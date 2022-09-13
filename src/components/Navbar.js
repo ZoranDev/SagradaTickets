@@ -47,12 +47,11 @@ const Navbar = () => {
         </div>
 
         {/* Right section*/}
-
         <div
           /* Links */
           className={`${
             !showNavbar && "hidden"
-          } w-full bg-rose-500 flex flex-col items-center justify-start overflow-hidden showNavbar absolute left-0 top-16 lg:w-[70%] lg:h-14 lg:flex-row lg:justify-end lg:bg-transparent lg:relative lg:top-0`}
+          } w-full bg-rose-500 flex flex-col items-center justify-start overflow-hidden showNavbar absolute left-0 top-16 lg:w-[70%] lg:h-14 lg:flex-row lg:justify-end lg:bg-transparent lg:relative lg:top-0 z-20`}
         >
           {["tiquets", "Oppening hours", "About", "faq"].map((item, index) => (
             <div
