@@ -16,6 +16,8 @@ const Navbar = () => {
   const handleResize = () => {
     if (document.body.clientWidth > 1024) {
       setShowNavbar(true);
+    } else {
+      setShowNavbar(false);
     }
   };
   window.addEventListener("resize", handleResize);
