@@ -4,6 +4,7 @@ import Navbar from "./components/Navbar";
 import CovidWarning from "./components/CovidWarning";
 import Home from "./components/Home";
 import Covid from "./components/Covid";
+import Faq from "./components/Faq";
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/covid-info" element={<Covid />} />
+        <Route path="/faq" element={<Faq />} />
       </Routes>
     </Router>
   );
