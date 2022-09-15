@@ -63,7 +63,7 @@ const Navbar = () => {
             !showNavbar && "hidden"
           } w-full bg-rose-500 flex flex-col items-center justify-start overflow-hidden showNavbar absolute left-0 top-16 z-10 lg:w-[70%] lg:h-14 lg:flex-row lg:justify-end lg:bg-transparent lg:relative lg:top-0 lg:z-0`}
         >
-          {["tiquets", "Oppening hours", "about", "faq"].map((item, index) => (
+          {["tickets", "Oppening hours", "about", "faq"].map((item, index) => (
             <Link
               to={`${item === "Oppening hours" ? "/hours" : `/${item}`}`}
               key={index}
