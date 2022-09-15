@@ -21,3 +21,14 @@
     height: 280px;
   }
 }
+
+/* .haha {
+  max-height: 0;
+  transition: max-height 0.2s ease-out;
+}
+
+.hehe {
+  max-height: 200px;
+  transition: max-height 0.2s ease-in;
+}
+ */
