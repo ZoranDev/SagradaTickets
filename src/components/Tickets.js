@@ -1,5 +1,7 @@
 // React
 import { useState, useContext, useEffect } from "react";
+//React router dom
+import { useNavigate } from "react-router-dom";
 // Calendar context
 import CalendarContext from "../../src/context/CalendarContext";
 // Icons
@@ -26,6 +28,8 @@ const Tickets = () => {
   useEffect(() => {
     setVisitors({ ...visitors, date: selectedDate });
   }, [selectedDate]);
+
+  const navigate = useNavigate();
 
   // removeError
   const removeError = () => {
@@ -87,8 +91,7 @@ const Tickets = () => {
       removeError();
       return;
     } else {
-      alert("have all info that we need");
-      console.log(visitors);
+      navigate("/tickets/nextSteps");
     }
   };
 
