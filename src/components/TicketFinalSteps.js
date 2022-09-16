@@ -5,6 +5,9 @@ import {
   FaChevronRight,
 } from "react-icons/fa";
 
+// List of all countries
+const countryList = require("country-list").getData();
+
 const TicketFinalSteps = () => {
   return (
     <div className="w-[800px] mx-auto my-10 border-2 border-black flex flex-col items-start">
@@ -93,7 +96,18 @@ const TicketFinalSteps = () => {
           <label htmlFor="conutry" className="mb-3 text-lg text-red-800">
             Country
           </label>
-          <select name="country" id="conutry"></select>
+          <select
+            name="country"
+            id="conutry"
+            className="w-full border-[1px] border-neutral-200 p-3"
+          >
+            <option value={"default"}>Choose a country</option>
+            {countryList.map((item, index) => (
+              <option key={index} value={item.name}>
+                {item.name}
+              </option>
+            ))}
+          </select>
         </div>
       </form>
     </div>
