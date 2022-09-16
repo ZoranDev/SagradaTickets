@@ -110,7 +110,7 @@ const Tickets = () => {
             <div className="flex items-center justify-center">
               <FaMinusCircle
                 onClick={item.id === "adults" ? removeAdult : removeChild}
-                className="text-red-600 h-10 w-10 cursor-pointer active:scale-[0.96]"
+                className="text-red-400 hover:text-red-600 h-10 w-10 cursor-pointer active:scale-[0.85] transition-color duration-[400ms]"
               />
               <input
                 className="w-14 h-10 mx-4 text-center border-2 border-red-200 focus:outline-0"
@@ -123,7 +123,7 @@ const Tickets = () => {
               />
               <FaPlusCircle
                 onClick={item.id === "adults" ? addAdult : addChild}
-                className="text-red-600 h-10 w-10 cursor-pointer active:scale-[0.96]"
+                className="text-red-400 hover:text-red-600 h-10 w-10 cursor-pointer active:scale-[0.85] transition-color duration-[400ms]"
               />
             </div>
           </div>
@@ -146,7 +146,7 @@ const Tickets = () => {
                 visitors.time === item.desc
                   ? "bg-red-500 text-white"
                   : "bg-transparent text-red-800"
-              } p-4 text-center font-lg hover:bg-red-500 cursor-pointer`}
+              } p-4 text-center font-lg hover:bg-red-500 hover:text-white cursor-pointer`}
               id={item.desc}
               onClick={setTime}
             >
@@ -157,9 +157,9 @@ const Tickets = () => {
 
         {/* Book now btn */}
         <button
-          className={`w-full my-4 p-3 text-3xl text-white capitalize rounded active:scale-[0.98] ${
+          className={`w-full my-4 p-3 text-3xl text-white capitalize rounded  ${
             visitors.adults > 0 && visitors.time && visitors.date
-              ? "bg-green-400 cursor-pointer hover:bg-green-500"
+              ? "bg-green-400 cursor-pointer active:scale-[0.98] hover:bg-green-500 transition-color duration-[400ms]"
               : "bg-red-200"
           } `}
           onClick={handleBookNow}

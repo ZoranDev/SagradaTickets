@@ -39,10 +39,10 @@ const Calendar = ({
   let date = 1;
 
   return (
-    <div className="w-full h-[300px]">
+    <div className="w-full h-[310px]">
       <div className="mb-3 flex justify-center items-center text-xl relative">
         <FaAngleLeft
-          className="text-xl absolute left-0 hover:scale-110 cursor-pointer "
+          className="text-xl absolute left-0 hover:scale-[1.5] hover:text-red-500 hover:cursor-pointer transition-transform duration-[400ms] "
           onClick={moveCalendarLeft}
         />
 
@@ -50,7 +50,7 @@ const Calendar = ({
         <div>{year}</div>
 
         <FaAngleRight
-          className="text-xl absolute right-0 hover:scale-110 cursor-pointer "
+          className="text-xl absolute right-0 hover:scale-[1.5] hover:text-red-500 hover:cursor-pointer transition-transform duration-[400ms] "
           onClick={moveCalendarRight}
         />
       </div>
