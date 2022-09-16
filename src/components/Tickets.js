@@ -56,7 +56,7 @@ const Tickets = () => {
 
   return (
     <CalendarProvider>
-      <div className="w-[500px] h-[800px] mx-auto my-7 border-2 border-black">
+      <div className="w-[500px]  mx-auto my-7 border-2 border-black">
         {/* Adults */}
         <div className="w-full p-4">
           <h1 className="w-full mb-3 text-center ">

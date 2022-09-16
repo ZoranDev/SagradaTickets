@@ -1,4 +1,4 @@
-import React from "react";
+import { Link } from "react-router-dom";
 
 const Home = () => {
   return (
@@ -69,9 +69,14 @@ const Home = () => {
       </div>
 
       {/* Button section */}
-      <button className="my-5 px-20 py-5 bg-red-600 text-white text-xl rounded-3xl cursor-pointer hover:bg-red-500 active:scale-[0.98]">
-        Get Tiquets
-      </button>
+      <Link
+        to="/tickets"
+        children={
+          <button className="my-5 px-20 py-5 bg-red-600 text-white text-xl rounded-3xl cursor-pointer hover:bg-red-500 active:scale-[0.98]">
+            Get Tiquets
+          </button>
+        }
+      />
     </div>
   );
 };
