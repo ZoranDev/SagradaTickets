@@ -39,7 +39,7 @@ const Calendar = ({
   let date = 1;
 
   return (
-    <div className="h-[300px] mb-3 sm:ml-3 sm:mr-3">
+    <div className="w-full h-[300px]">
       <div className="mb-3 flex justify-center items-center text-xl relative">
         <FaAngleLeft
           className="text-xl absolute left-0 hover:scale-110 cursor-pointer "
@@ -54,7 +54,7 @@ const Calendar = ({
           onClick={moveCalendarRight}
         />
       </div>
-      <table>
+      <table className="w-full">
         <thead className="border-b-8 border-transparent">
           <tr>
             <th>Mon</th>
