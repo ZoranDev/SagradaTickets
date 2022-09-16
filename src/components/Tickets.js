@@ -87,13 +87,14 @@ const Tickets = () => {
       removeError();
       return;
     } else {
+      alert("have all info that we need");
       console.log(visitors);
     }
   };
 
   return (
     <div className="w-full py-10 px-2 flex flex-col items-center justify-evenly lg:flex-row lg:items-start">
-      <div className="w-full max-w-[500px] mb-5 p-4 shadow-[0_0_10px_rgba(0,0,0,0.7)] overflow-hidden">
+      <div className="w-full max-w-[490px] mb-5 p-4 shadow-[0_0_10px_rgba(0,0,0,0.7)] overflow-hidden">
         {/* Adding adults and childrens */}
         {[
           {
@@ -179,7 +180,7 @@ const Tickets = () => {
       </div>
 
       {/* Additional info */}
-      <div className="max-w-[500px] ">
+      <div className="max-w-[490px] ">
         <div className="w-full  overflow-hidden">
           <img
             src="https://sagradafamilia-tickets.com/wp-content/uploads/2020/03/9.jpg"
