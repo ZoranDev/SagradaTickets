@@ -10,9 +10,9 @@ const countryList = require("country-list").getData();
 
 const TicketFinalSteps = () => {
   return (
-    <div className="w-[800px] mx-auto my-10 border-2 border-black flex flex-col items-start">
+    <div className="max-w-[700px] my-10 mx-2 p-4 shadow-[0_0_10px_rgba(0,0,0,0.7)] flex flex-col items-start md:mx-auto">
       {/* Order status */}
-      <div className="w-full mb-5 flex items-center justify-between">
+      <div className="w-full mb-5 flex items-center justify-between md:px-20">
         {[
           { id: 1, text: "Ticket selected" },
           {},
@@ -23,21 +23,21 @@ const TicketFinalSteps = () => {
           item.id === 1 || item.id === 2 || item.id === 3 ? (
             <div key={index}>
               <div
-                className={`w-[100px] h-[100px] ${
+                className={`w-[60px] h-[60px] ${
                   item.id === 2
                     ? "bg-red-800 text-neutral-200"
                     : "bg-neutral-200 text-red-800"
-                } rounded-full flex items-center justify-center relative`}
+                } rounded-full flex items-center justify-center relative sm:w-[100px] sm:h-[100px]`}
               >
-                {item === 1 ? (
+                {item.id === 1 ? (
                   <FaTicketAlt className="w-[30px] h-[30px]" />
-                ) : item === 2 ? (
+                ) : item.id === 2 ? (
                   <FaShoppingCart className="w-[30px] h-[30px]" />
                 ) : (
                   <FaCheck className="w-[30px] h-[30px]" />
                 )}
                 <div
-                  className={`px-4 py-[2px] bg-red-800 rounded-2xl text-white absolute top-0 -right-5 ${
+                  className={`-top-3 -right-4 px-2 text-sm bg-red-800 rounded-2xl text-white absolute sm:px-4 sm:py-[2px] sm:top-0 sm:-right-5 ${
                     item.id === 2 && "border-2 border-white"
                   }`}
                 >
@@ -48,7 +48,7 @@ const TicketFinalSteps = () => {
             </div>
           ) : (
             <FaChevronRight
-              className="w-[40px] h-[40px] text-red-800"
+              className="w-[20px] h-[20px] text-red-800 sm:w-[40px] sm:h-[40px]"
               key={index}
             />
           )
