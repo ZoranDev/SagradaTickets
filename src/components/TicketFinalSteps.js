@@ -7,9 +7,9 @@ import {
 
 const TicketFinalSteps = () => {
   return (
-    <div className="w-[800px] h-[800px] mx-auto my-10 border-2 border-black flex flex-col items-start">
+    <div className="w-[800px] mx-auto my-10 border-2 border-black flex flex-col items-start">
       {/* Order status */}
-      <div className="w-full flex items-center justify-between">
+      <div className="w-full mb-5 flex items-center justify-between">
         {[
           { id: 1, text: "Ticket selected" },
           {},
@@ -51,6 +51,51 @@ const TicketFinalSteps = () => {
           )
         )}
       </div>
+
+      {/* Form */}
+      <form className="w-full">
+        {[
+          { title: "Name", id: "name" },
+          { title: "Last Name", id: "lastName" },
+          { title: "E-mail", id: "email" },
+          { title: "Phone number", id: "phone" },
+          { title: "Postcode", id: "postCode" },
+          { title: "ID Number", id: "idNumber" },
+          { title: "Adress", id: "address" },
+        ].map((item, index) => (
+          <div key={index} className="w-full mb-5 flex flex-col">
+            <label htmlFor={item} className="mb-3 text-lg text-red-800">
+              {item.title} *
+            </label>
+            <input
+              type="text"
+              id={item.id}
+              placeholder={item.title}
+              className="w-full p-3 border-[1px] border-neutral-200 focus:outline-0"
+              required={true}
+            />
+          </div>
+        ))}
+        {/* Under 30 */}
+        <div className="w-full mb-5 flex flex-col">
+          <label htmlFor={"under30"} className="mb-3 text-lg text-red-800">
+            How many adults under 30 ? *
+          </label>
+          <input
+            type="number"
+            id="under30"
+            className="w-full p-3 border-[1px] border-neutral-200 focus:outline-0"
+            required={true}
+          />
+        </div>
+        {/* Conutry */}
+        <div className="w-full mb-5 flex flex-col">
+          <label htmlFor="conutry" className="mb-3 text-lg text-red-800">
+            Country
+          </label>
+          <select name="country" id="conutry"></select>
+        </div>
+      </form>
     </div>
   );
 };
