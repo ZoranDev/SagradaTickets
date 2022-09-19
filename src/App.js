@@ -9,6 +9,7 @@ import Home from "./components/Home";
 import Tickets from "./components/Tickets";
 import Faq from "./components/Faq";
 import OpeningHours from "./components/OpeningHours";
+import About from "./components/About";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
           <Route path="/hours" element={<OpeningHours />} />
           <Route path="/covid-info" element={<Covid />} />
           <Route path="/faq" element={<Faq />} />
+          <Route path="/about" element={<About />} />
         </Routes>
       </CalendarProvider>
     </Router>
