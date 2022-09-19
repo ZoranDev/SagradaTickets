@@ -208,7 +208,7 @@ const TicketFinalSteps = ({
             </thead>
             <tbody>
               <tr className="w-full">
-                <td className="p-3 flex items-center justify-left ">
+                <td className="p-3 flex flex-col items-center justify-left sm:flex-row">
                   <img
                     className="w-[70px] mr-2"
                     src="https://sagradafamilia-tickets.com/wp-content/uploads/2020/03/9-300x300.jpg"
