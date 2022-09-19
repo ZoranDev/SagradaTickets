@@ -1,7 +1,5 @@
 // React
 import { useState, useContext, useEffect } from "react";
-//React router dom
-import { useNavigate } from "react-router-dom";
 // Calendar context
 import CalendarContext from "../../src/context/CalendarContext";
 // Icons
@@ -9,10 +7,18 @@ import { FaPlusCircle, FaMinusCircle } from "react-icons/fa";
 // Components
 import CalendarsContainer from "../calendarComponents/CalendarsContainer";
 import Error from "./Error";
+import TicketFinalSteps from "./TicketFinalSteps";
 
 const Tickets = () => {
   // Context stuff
   const { selectedDate } = useContext(CalendarContext);
+
+  // State for displaying step 1 (book tickets), setp 2 (fill form), step 3 (pay)
+  const [stepToDisplay, setStepToDisplay] = useState({
+    step1: true,
+    step2: false,
+    step3: false,
+  });
 
   // State for adults and childrens
   const [visitors, setVisitors] = useState({
@@ -28,8 +34,6 @@ const Tickets = () => {
   useEffect(() => {
     setVisitors({ ...visitors, date: selectedDate });
   }, [selectedDate]);
-
-  const navigate = useNavigate();
 
   // removeError
   const removeError = () => {
@@ -91,11 +95,20 @@ const Tickets = () => {
       removeError();
       return;
     } else {
-      navigate("/tickets/nextSteps");
+      setStepToDisplay({ step1: false, step2: true, step3: false });
     }
   };
 
-  return (
+  //showThirdStep
+  const showThirdStep = () => {
+    setStepToDisplay({
+      step1: false,
+      step2: false,
+      step3: true,
+    });
+  };
+
+  return stepToDisplay.step1 ? (
     <div className="w-full py-10 px-2 flex flex-col items-center justify-evenly lg:flex-row lg:items-start">
       <div className="w-full max-w-[490px] mb-5 p-4 shadow-[0_0_10px_rgba(0,0,0,0.7)] overflow-hidden">
         {/* Adding adults and childrens */}
@@ -221,6 +234,21 @@ const Tickets = () => {
         </div>
       </div>
     </div>
+  ) : stepToDisplay.step2 ? (
+    <TicketFinalSteps
+      numOfAdults={visitors.adults}
+      bookingDate={selectedDate}
+      showThirdStep={showThirdStep}
+      bookingTime={
+        visitors.time === "morning"
+          ? "09:00 - 11:45"
+          : visitors.time === "noon"
+          ? "12:00 - 14:45"
+          : "15:00 - 19:00"
+      }
+    />
+  ) : (
+    <div>Payment div</div>
   );
 };
 
