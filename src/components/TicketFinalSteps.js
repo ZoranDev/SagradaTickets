@@ -14,10 +14,8 @@ import {
 const countryList = require("country-list").getData();
 
 const TicketFinalSteps = ({
-  numOfAdults,
-  bookingDate,
-  bookingTime,
   showThirdStep,
+  visitors: { adults, date, time, type },
 }) => {
   // State for user info
   const [userInfo, setUserInfo] = useState({
@@ -50,13 +48,13 @@ const TicketFinalSteps = ({
   };
 
   // Get  an array for adults (in input under30 to show that)
-  const adultsArray = Array.apply(null, Array(numOfAdults + 1));
+  const adultsArray = Array.apply(null, Array(adults + 1));
 
   // Total price
   const totalPrice = () => {
     let basicPrice = 24; // Basic price is 24 eur per person
     let under30 = userInfo.under30 ? parseInt(userInfo.under30) : 0;
-    let allAdults = parseInt(numOfAdults);
+    let allAdults = parseInt(adults);
     // If adult is over 30 fee is 12 eur otherwise fee is 10 eur
     const price =
       under30 === 0
@@ -66,7 +64,7 @@ const TicketFinalSteps = ({
           under30 * basicPrice +
           under30 * 10;
 
-    return price;
+    return type === "basic" || type === "towers" ? price : price * 2;
   };
 
   //submitForm
@@ -217,14 +215,19 @@ const TicketFinalSteps = ({
                   <p>Sagrada familia tickets</p>
                 </td>
                 <td>
-                  <p>x {numOfAdults} adults</p>
+                  <p>x {adults} adults</p>
                   <p>
                     <span className="font-bold mr-2">Booking date:</span>
-                    {new Date(bookingDate).toString().slice(0, 15)}
+                    {new Date(date).toString().slice(0, 15)}
                   </p>
                   <p>
                     <span className="font-bold mr-2">Booking time:</span>
-                    {bookingTime} h
+                    {time === "morning"
+                      ? "09:00 - 11:45"
+                      : time === "noon"
+                      ? "12:00 - 14:45"
+                      : "15:00 - 19:00"}{" "}
+                    h
                   </p>
                 </td>
               </tr>

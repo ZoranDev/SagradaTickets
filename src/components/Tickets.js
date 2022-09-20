@@ -154,28 +154,24 @@ const Tickets = () => {
 
         {/* Type of ticket */}
         <div className="w-full h-[40px] mb-4">
-          <button
-            id="basic"
-            onClick={setTicketType}
-            className={`w-[50%] h-full py-[5px] ${
-              visitors.type === "basic"
-                ? "bg-red-500"
-                : "bg-red-200 hover:bg-red-500"
-            }  text-[20px] text-center text-white`}
-          >
-            Basic
-          </button>
-          <button
-            id="towers"
-            onClick={setTicketType}
-            className={`w-[50%] h-full py-[5px] ${
-              visitors.type === "towers"
-                ? "bg-red-500"
-                : "bg-red-200 hover:bg-red-500"
-            } text-[20px] text-center text-white`}
-          >
-            Basic + Towers
-          </button>
+          {["basic", "towers", "basicPlusTowers"].map((item, index) => (
+            <button
+              key={index}
+              id={item}
+              className={`w-[33%] h-full py-[5px] text-[20px] text-center text-white ${
+                visitors.type === item
+                  ? "bg-red-500"
+                  : "bg-red-200 hover:bg-red-500"
+              }`}
+              onClick={setTicketType}
+            >
+              {item === "basic"
+                ? "Basic"
+                : item === "towers"
+                ? "Towers"
+                : "Basic + Towers"}
+            </button>
+          ))}
         </div>
 
         {/* Calendar */}
@@ -267,18 +263,7 @@ const Tickets = () => {
       </div>
     </div>
   ) : stepToDisplay.step2 ? (
-    <TicketFinalSteps
-      numOfAdults={visitors.adults}
-      bookingDate={selectedDate}
-      showThirdStep={showThirdStep}
-      bookingTime={
-        visitors.time === "morning"
-          ? "09:00 - 11:45"
-          : visitors.time === "noon"
-          ? "12:00 - 14:45"
-          : "15:00 - 19:00"
-      }
-    />
+    <TicketFinalSteps visitors={visitors} showThirdStep={showThirdStep} />
   ) : (
     <div>Payment div</div>
   );
