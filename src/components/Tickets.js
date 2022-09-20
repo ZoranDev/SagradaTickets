@@ -26,6 +26,7 @@ const Tickets = () => {
     childrens: 0,
     date: null,
     time: null,
+    type: null,
   });
 
   // State for error
@@ -88,6 +89,11 @@ const Tickets = () => {
     setVisitors({ ...visitors, time: e.target.id });
   };
 
+  //setTicketType
+  const setTicketType = (e) => {
+    setVisitors({ ...visitors, type: e.target.id });
+  };
+
   //handleBookNow
   const handleBookNow = () => {
     if (visitors.adults > 10) {
@@ -145,6 +151,32 @@ const Tickets = () => {
             </div>
           </div>
         ))}
+
+        {/* Type of ticket */}
+        <div className="w-full h-[40px] mb-4">
+          <button
+            id="basic"
+            onClick={setTicketType}
+            className={`w-[50%] h-full py-[5px] ${
+              visitors.type === "basic"
+                ? "bg-red-500"
+                : "bg-red-200 hover:bg-red-500"
+            }  text-[20px] text-center text-white`}
+          >
+            Basic
+          </button>
+          <button
+            id="towers"
+            onClick={setTicketType}
+            className={`w-[50%] h-full py-[5px] ${
+              visitors.type === "towers"
+                ? "bg-red-500"
+                : "bg-red-200 hover:bg-red-500"
+            } text-[20px] text-center text-white`}
+          >
+            Basic + Towers
+          </button>
+        </div>
 
         {/* Calendar */}
 
