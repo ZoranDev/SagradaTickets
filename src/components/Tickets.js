@@ -153,16 +153,16 @@ const Tickets = () => {
         ))}
 
         {/* Type of ticket */}
-        <div className="w-full h-[40px] mb-4">
+        <div className="w-full h-auto mb-15 flex flex-col sm:h-[40px] sm:flex-row">
           {["basic", "towers", "basicPlusTowers"].map((item, index) => (
             <button
               key={index}
               id={item}
-              className={`w-[33%] h-full py-[5px] text-[20px] text-center text-white ${
+              className={`w-full h-full mb-1 py-[5px] text-[20px] text-center text-white ${
                 visitors.type === item
                   ? "bg-red-500"
                   : "bg-red-200 hover:bg-red-500"
-              }`}
+              } sm:w-[33%] sm:mb-0`}
               onClick={setTicketType}
             >
               {item === "basic"
@@ -203,7 +203,10 @@ const Tickets = () => {
         {/* Book now btn */}
         <button
           className={`w-full my-4 p-3 text-3xl text-white capitalize rounded  ${
-            visitors.adults > 0 && visitors.time && visitors.date
+            visitors.adults > 0 &&
+            visitors.time &&
+            visitors.date &&
+            visitors.type
               ? "bg-green-400 cursor-pointer active:scale-[0.98] hover:bg-green-500 transition-color duration-[400ms]"
               : "bg-red-200"
           } `}
