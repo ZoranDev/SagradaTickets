@@ -10,6 +10,7 @@ import Tickets from "./components/Tickets";
 import Faq from "./components/Faq";
 import OpeningHours from "./components/OpeningHours";
 import About from "./components/About";
+import Footer from "./components/Footer";
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
           <Route path="/about" element={<About />} />
         </Routes>
       </CalendarProvider>
+      <Footer />
     </Router>
   );
 }
