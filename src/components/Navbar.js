@@ -75,9 +75,14 @@ const Navbar = () => {
             />
           ))}
           {/* Log in */}
-          <button className="w-full h-14 p-3 uppercase text-white text-center hover:bg-rose-600 lg:w-auto lg:h-10 lg:px-16 lg:py-2 lg:rounded lg:bg-red-600 lg:text-white lg:capitalize lg:hover:bg-red-700 lg:active:scale-95 ">
-            Log In
-          </button>
+          <Link
+            to="/logIn"
+            children={
+              <button className="w-full h-14 p-3 uppercase text-white text-center hover:bg-rose-600 lg:w-auto lg:h-10 lg:px-16 lg:py-2 lg:rounded lg:bg-red-600 lg:text-white lg:capitalize lg:hover:bg-red-700 lg:active:scale-95 ">
+                Log In
+              </button>
+            }
+          />
         </div>
       </div>
     </div>
