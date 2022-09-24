@@ -1,10 +1,11 @@
-import { useState, createContext } from "react";
+import { useState, createContext, useEffect } from "react";
 
 const calendarContext = createContext();
 
 export const CalendarProvider = ({ children }) => {
   // State for selected dates - selected by user
-  const [selectedDate, setSelectedDate] = useState(null);
+  /* const [selectedDate, setSelectedDate] = useState(null); */
+  // Iskljucivanjem ovoga nece se prikazivati da je obojan selektovani dan ali to ni nema veze kad se odma prelazi na sledeci korak
 
   // handle click function
   const handleClick = (year, month, e) => {
@@ -15,14 +16,14 @@ export const CalendarProvider = ({ children }) => {
       parseInt(e.target.textContent)
     ).getTime();
 
-    setSelectedDate(clickedDate);
+    /*  setSelectedDate(clickedDate); */
     return clickedDate;
   };
 
   return (
     <calendarContext.Provider
       value={{
-        selectedDate,
+        /* selectedDate, */
         handleClick,
       }}
     >
