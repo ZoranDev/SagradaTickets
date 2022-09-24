@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import Calendar from "./Calendar";
 
-const CalendarsContainer = () => {
+const CalendarsContainer = ({ selectDate }) => {
   // Treba dobiti niz na osnovu kojeg ce se prikazivati kalendari
   const [indexCalendar, setIndexCalendar] = useState(0);
 
@@ -43,12 +43,13 @@ const CalendarsContainer = () => {
 
   return (
     allMonthsToDisplay.length !== 0 && (
-      <div className="mt-4 px-4 overflow-auto flex flex-col justify-center items-baseline sm:flex-row">
+      <div className="pb-3 px-4 overflow-auto flex flex-col justify-center items-baseline sm:flex-row">
         <Calendar
           year={allMonthsToDisplay[indexCalendar].year}
           month={allMonthsToDisplay[indexCalendar].month}
           moveCalendarLeft={moveCalendarLeft}
           moveCalendarRight={moveCalendarRight}
+          selectDate={selectDate}
         />
       </div>
     )

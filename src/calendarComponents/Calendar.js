@@ -20,7 +20,7 @@ const months = [
 const Calendar = ({
   year,
   month,
-  calendar,
+  selectDate,
   moveCalendarRight,
   moveCalendarLeft,
 }) => {
@@ -39,7 +39,7 @@ const Calendar = ({
   let date = 1;
 
   return (
-    <div className="w-full h-[310px]">
+    <div className="min-w-[300px] w-[500px] h-[310px] bg-white">
       <div className="mb-3 flex justify-center items-center text-xl relative">
         <FaAngleLeft
           className="text-xl absolute left-0 hover:scale-[1.5] hover:text-red-500 hover:cursor-pointer transition-transform duration-[400ms] "
@@ -84,6 +84,7 @@ const Calendar = ({
                           date={date - 1}
                           year={year}
                           month={month}
+                          selectDate={selectDate}
                         />
                       );
                     }
@@ -102,6 +103,7 @@ const Calendar = ({
                           date={date - 1}
                           year={year}
                           month={month}
+                          selectDate={selectDate}
                         />
                       );
                     } else {

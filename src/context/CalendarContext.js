@@ -16,6 +16,7 @@ export const CalendarProvider = ({ children }) => {
     ).getTime();
 
     setSelectedDate(clickedDate);
+    return clickedDate;
   };
 
   return (

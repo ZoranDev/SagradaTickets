@@ -7,7 +7,7 @@ const yesterdayTime = new Date(
   new Date().getDate() - 1
 ).getTime();
 
-const DayBtn = ({ date, year, month }) => {
+const DayBtn = ({ date, year, month, selectDate }) => {
   // Context stuff
   const { selectedDate, handleClick } = useContext(calendarContext);
 
@@ -28,7 +28,9 @@ const DayBtn = ({ date, year, month }) => {
   });
 
   // onClick function
-  const onClick = (e) => handleClick(year, month, e);
+  const onClick = (e) => {
+    selectDate(handleClick(year, month, e));
+  };
 
   // isDisabled function
   const isDisabled = () => {
@@ -41,10 +43,14 @@ const DayBtn = ({ date, year, month }) => {
   // getClass function
   const getClass = () => {
     if (dayBtnTime === selectedDate)
-      return setBtnClass("w-full h-full bg-red-400 cursor-pointer ");
+      return setBtnClass(
+        "w-full h-full border-[4px] border-red-600 cursor-pointer font-bold text-red-600"
+      );
     if (disabled)
-      return setBtnClass("w-full h-full bg-slate-100 text-slate-400");
-    return setBtnClass("w-full h-full cursor-pointer hover:bg-red-100");
+      return setBtnClass(
+        "w-full h-full bg-slate-100 text-slate-400 cursor-not-allowed"
+      );
+    return setBtnClass("w-full h-full cursor-pointer hover:bg-neutral-300");
   };
 
   return (
