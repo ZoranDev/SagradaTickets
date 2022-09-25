@@ -9,12 +9,12 @@ import TicketsStep2 from "./ticketSteps/step2/TicketsStep2";
 import { TicketProvider } from "../context/TicketContext";
 
 const Tickets = () => {
-  // Active step - step1 (date,time,visitors), step2 (personal info), step3 (pay) - step4 (confirmation)
-  const [activeStep, setActiveStep] = useState("step1");
+  // Active step - 1 (date,time,visitors), 2 (personal info), 3 (pay) - 4 (confirmation)
+  const [activeStep, setActiveStep] = useState(1);
 
   // changeActiveStep
-  const changeActiveStep = (step) => {
-    setActiveStep(step);
+  const changeActiveStep = (stepID) => {
+    setActiveStep(stepID);
   };
 
   return (
@@ -68,10 +68,10 @@ const Tickets = () => {
 
         {/* Steps */}
         <TicketProvider>
-          {activeStep === "step1" && (
+          {activeStep === 1 && (
             <TicketsStep1 changeActiveStep={changeActiveStep} />
           )}
-          {activeStep === "step2" && <TicketsStep2 />}
+          {activeStep === 2 && <TicketsStep2 />}
         </TicketProvider>
       </div>
 

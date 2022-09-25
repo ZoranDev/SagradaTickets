@@ -17,7 +17,7 @@ const TicketsStep1 = ({ changeActiveStep }) => {
 
   //changeStep
   const changeStep = () => {
-    date && time && sumOfVisitors !== 0 && changeActiveStep("step2");
+    date && time && sumOfVisitors !== 0 && changeActiveStep(2);
   };
 
   return (
