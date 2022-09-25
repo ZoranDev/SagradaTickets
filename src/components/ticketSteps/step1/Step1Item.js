@@ -93,7 +93,7 @@ const Step1Item = ({ id }) => {
   return (
     <div className="w-full flex items-center justify-start flex-col">
       {/* Headline */}
-      <div className="w-[80%] mb-3 flex items-center justify-between">
+      <div className="w-full mb-3 flex items-center justify-between">
         {/* Left icon */}
         {id === "calendar" ? (
           <FaRegCalendarAlt className="w-[10%] h-[30px]" />
@@ -149,7 +149,7 @@ const Step1Item = ({ id }) => {
         )}
       </div>
 
-      <div className={`w-[60%] flex items-center justify-center`}>
+      <div className={`w-[80%] flex items-center justify-center`}>
         {id === "calendar" && step1ActiveMidStep === "calendar" && (
           <CalendarsContainer selectDate={selectDate} />
         )}

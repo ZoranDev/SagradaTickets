@@ -7,13 +7,18 @@ import Step1Item from "../../ticketSteps/step1/Step1Item";
 // Icons
 import { FaAngleRight } from "react-icons/fa";
 
-const TicketsStep1 = () => {
+const TicketsStep1 = ({ changeActiveStep }) => {
   // Context
   const {
     userTicketData: { date, time },
     sumOfVisitors,
     calculatePrice,
   } = useContext(TicketContext);
+
+  //changeStep
+  const changeStep = () => {
+    date && time && sumOfVisitors !== 0 && changeActiveStep("step2");
+  };
 
   return (
     <div className="w-full">
@@ -32,11 +37,12 @@ const TicketsStep1 = () => {
           </h1>
         </div>
         <button
+          onClick={changeStep}
           className={`h-[60px] px-[10px] ml-5 text-[20px] text-white ${
             date && time && sumOfVisitors !== 0
-              ? "bg-red-500"
-              : "bg-neutral-400"
-          } rounded flex items-center justify-center transition-color duration-[600ms]`}
+              ? "bg-red-500 cursor-pointer"
+              : "bg-neutral-400 cursor-not-allowed"
+          } rounded flex items-center justify-center transition-color duration-[400ms] active:scale-[0.95]`}
         >
           CONTINUE
           <FaAngleRight className="ml-2 text-[20px]" />

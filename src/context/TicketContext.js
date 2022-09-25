@@ -1,5 +1,5 @@
 // react
-import { createContext, useState, useEffect } from "react";
+import { createContext, useState } from "react";
 
 const TicketContext = createContext();
 

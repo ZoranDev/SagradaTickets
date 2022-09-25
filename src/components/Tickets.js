@@ -4,27 +4,25 @@ import { useState } from "react";
 import { FaTicketAlt, FaUserAlt, FaCreditCard, FaCheck } from "react-icons/fa";
 // Components
 import TicketsStep1 from "./ticketSteps/step1/TicketsStep1";
+import TicketsStep2 from "./ticketSteps/step2/TicketsStep2";
 // Context
 import { TicketProvider } from "../context/TicketContext";
 
 const Tickets = () => {
-  // Active step
-  const [activeStep, setActiveStep] = useState(1);
+  // Active step - step1 (date,time,visitors), step2 (personal info), step3 (pay) - step4 (confirmation)
+  const [activeStep, setActiveStep] = useState("step1");
 
-  // State for displaying step 1 (book tickets), setp 2 (fill form), step 3 (pay)
-  const [stepToDisplay, setStepToDisplay] = useState({
-    step1: true,
-    step2: false,
-    step3: false,
-    step4: false,
-  });
+  // changeActiveStep
+  const changeActiveStep = (step) => {
+    setActiveStep(step);
+  };
 
   return (
     <div className="w-full py-10 px-2 flex flex-col items-center justify-evenly lg:flex-col lg:items-start">
       {/* New design */}
-      <div className="w-full h-[1000px] bg-transparent border-2 border-black  mx-auto">
+      <div className="w-full mx-auto px-[100px] py-5 bg-transparent border-2 border-black ">
         {/* Active step section */}
-        <div className={`flex items-center justify-center mb-5`}>
+        <div className={`w-full flex items-center justify-center mb-5`}>
           {[
             { step: 1, text: "Select your tickets" },
             {
@@ -70,7 +68,10 @@ const Tickets = () => {
 
         {/* Steps */}
         <TicketProvider>
-          <TicketsStep1 />
+          {activeStep === "step1" && (
+            <TicketsStep1 changeActiveStep={changeActiveStep} />
+          )}
+          {activeStep === "step2" && <TicketsStep2 />}
         </TicketProvider>
       </div>
 
