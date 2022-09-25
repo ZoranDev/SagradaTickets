@@ -1,5 +1,5 @@
 // react
-import { createContext, useState } from "react";
+import { createContext, useState, useEffect } from "react";
 
 const TicketContext = createContext();
 
@@ -21,6 +21,23 @@ export const TicketProvider = ({ children }) => {
   // State for active mid step in step 1
   const [step1ActiveMidStep, setStep1ActiveMidStep] = useState("calendar");
 
+  // State for sum of visitors
+  const [sumOfVisitors, setSumOfVisitors] = useState(0);
+
+  //get sumOfVisitors
+  const getSumOfVisitors = () => {
+    let sum = 0;
+    userTicketData.visitors.forEach((item) => {
+      sum += item.value;
+    });
+    setSumOfVisitors(sum);
+  };
+
+  //showNextStep - mozda ovo moze jednostavnije preko niza nekog
+  const showNextStep = (step) => {
+    setStep1ActiveMidStep(step);
+  };
+
   // selectDate
   const selectDate = (date) => {
     setUserTicketData({ ...userTicketData, date: date });
@@ -31,19 +48,6 @@ export const TicketProvider = ({ children }) => {
   const selectTime = (e) => {
     setUserTicketData({ ...userTicketData, time: e.target.id });
     setStep1ActiveMidStep("visitors");
-  };
-
-  //removeVisitor
-  const removeVisitor = (id) => {
-    setUserTicketData({
-      ...userTicketData,
-      visitors: userTicketData.visitors.map((visitor) => {
-        if (visitor.id === id) {
-          visitor.value -= 1;
-        }
-        return visitor;
-      }),
-    });
   };
 
   //addVisitor
@@ -57,6 +61,22 @@ export const TicketProvider = ({ children }) => {
         return visitor;
       }),
     });
+    // OVO MOZDA POGLEDATI MALO JER DA NEMA OVOGA KAD KLIKNEM NA PLUS NE BI MI U STEP1 LOGOVALO DA IMA VISITORA
+    getSumOfVisitors();
+  };
+
+  //removeVisitor
+  const removeVisitor = (id) => {
+    setUserTicketData({
+      ...userTicketData,
+      visitors: userTicketData.visitors.map((visitor) => {
+        if (visitor.id === id) {
+          visitor.value -= 1;
+        }
+        return visitor;
+      }),
+    });
+    getSumOfVisitors();
   };
 
   return (
@@ -64,10 +84,12 @@ export const TicketProvider = ({ children }) => {
       value={{
         userTicketData,
         step1ActiveMidStep,
+        sumOfVisitors,
         selectDate,
         selectTime,
         addVisitor,
         removeVisitor,
+        showNextStep,
       }}
     >
       {children}

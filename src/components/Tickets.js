@@ -43,7 +43,7 @@ const Tickets = () => {
             <div key={index} className="relative w-[200px]">
               <div
                 className={`relative -left-3 w-[50px] h-[50px] ${
-                  obj.step === activeStep ? "bg-red-600" : "bg-red-200"
+                  obj.step === activeStep ? "bg-black" : "bg-neutral-400"
                 }  text-white text-xl rounded-full border-[1px] border-white flex items-center justify-center z-10`}
               >
                 {obj.step === 1 ? (
@@ -59,7 +59,7 @@ const Tickets = () => {
 
               <div
                 className={`absolute top-2/4 -translate-y-2/4 w-full pl-11 py-1 text-white rounded-md ${
-                  obj.step === activeStep ? "bg-red-600" : "bg-red-200"
+                  obj.step === activeStep ? "bg-black" : "bg-neutral-400"
                 }`}
               >
                 {obj.text}

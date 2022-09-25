@@ -44,26 +44,35 @@ const AddRemoveVisitor = ({ id }) => {
     addVisitor,
     removeVisitor,
     userTicketData: { visitors },
+    sumOfVisitors,
   } = useContext(TicketContext);
+
   // State for title and price
   const [titleAndPrice, setTitleAndPrice] = useState({
     title: null,
     price: null,
   });
+
   // State for value
   const [value, setValue] = useState("");
+
+  // State for left cursor and right cursor
+  const [cursors, setCursors] = useState({
+    left: "cursor-pointer",
+    right: "cursor-pointer",
+  });
 
   // State for disabled - set this to true if sum of all visitors is 9 (max 9 visitors per one ticket)
   const [disabled, setDisabled] = useState(false);
 
-  useEffect(
-    () => {
-      getTitleAndPrice();
-      getValue();
-    },
-    [visitors],
-    []
-  );
+  useEffect(() => {
+    getTitleAndPrice();
+    getValue();
+  }, [visitors]);
+
+  useEffect(() => {
+    getCursors();
+  }, [value]);
 
   //get value
   const getValue = () => {
@@ -80,22 +89,34 @@ const AddRemoveVisitor = ({ id }) => {
     });
   };
 
-  //minus
+  // getCursors
+  const getCursors = () => {
+    if (value === 0) {
+      setCursors({ ...cursors, left: "cursor-not-allowed" });
+      return;
+    }
+    if (
+      value === 9 ||
+      (id === "disabled" && value === 2) ||
+      (id === "under11" && value === 6) ||
+      sumOfVisitors === 9
+    ) {
+      setCursors({ left: "cursor-pointer", right: "cursor-not-allowed" });
+      setDisabled(true);
+      return;
+    }
+    setDisabled(false);
+    setCursors({ left: "cursor-pointer", right: "cursor-pointer" });
+  };
+
+  //minus function
   const minus = () => {
     value !== 0 && removeVisitor(id);
   };
 
-  //plus
+  //plus function
   const plus = () => {
-    if (!disabled) {
-      if (id === "disabled") {
-        value < 2 && addVisitor(id);
-      } else if (id === "under11") {
-        value < 6 && addVisitor(id);
-      } else {
-        value < 9 && addVisitor(id);
-      }
-    }
+    !disabled && addVisitor(id);
   };
 
   return (
@@ -107,9 +128,7 @@ const AddRemoveVisitor = ({ id }) => {
         <h1 className="mr-2">{titleAndPrice.price}€</h1>
         <div className="w-[110px] flex items-center justify-center">
           <FaMinus
-            className={`w-[30px] h-[30px] p-2 bg-neutral-400 text-white ${
-              value === 0 ? "cursor-not-allowed" : "cursor-pointer"
-            } rounded-tl-md rounded-bl-md`}
+            className={`w-[30px] h-[30px] p-2 bg-neutral-400 text-white ${cursors.left} rounded-tl-md rounded-bl-md`}
             onClick={minus}
           />
           <input
@@ -119,21 +138,7 @@ const AddRemoveVisitor = ({ id }) => {
             value={value}
           />
           <FaPlus
-            className={`w-[30px] h-[30px] p-2 bg-neutral-600 text-white ${
-              id === "disabled"
-                ? value >= 2
-                  ? "cursor-not-allowed"
-                  : "cursor-pointer"
-                : id === "under11"
-                ? value >= 6
-                  ? "cursor-not-allowed"
-                  : "cursor-pointer"
-                : value >= 9
-                ? "cursor-not-allowed"
-                : "cursor-pointer"
-            } rounded-tr-md rounded-br-md  ${
-              disabled && "cursor-not-allowed"
-            }  `}
+            className={`w-[30px] h-[30px] p-2 bg-neutral-600 text-white ${cursors.right} rounded-tr-md rounded-br-md`}
             onClick={plus}
           />
         </div>
