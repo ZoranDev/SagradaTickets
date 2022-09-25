@@ -1,10 +1,11 @@
 // react
-import { useState } from "react";
-import { useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
+// Context
+import TicketContext from "../../../context/TicketContext";
 // Icons
 import { FaMinus, FaPlus } from "react-icons/fa";
 
-const info = [
+const titlesAndPrices = [
   {
     id: "general",
     title: "General",
@@ -37,35 +38,43 @@ const info = [
   },
 ];
 
-const AddRemoveVisitor = ({
-  id,
-  addVisitor,
-  removeVisitor,
-  value,
-  visitors,
-}) => {
-  // State for title
+const AddRemoveVisitor = ({ id }) => {
+  // Context
+  const {
+    addVisitor,
+    removeVisitor,
+    userTicketData: { visitors },
+  } = useContext(TicketContext);
+  // State for title and price
   const [titleAndPrice, setTitleAndPrice] = useState({
     title: null,
     price: null,
   });
+  // State for value
+  const [value, setValue] = useState("");
 
   // State for disabled - set this to true if sum of all visitors is 9 (max 9 visitors per one ticket)
   const [disabled, setDisabled] = useState(false);
 
-  useEffect(() => {
-    getTitleAndPrice();
-    // Calculate all visitors
-    let sumOfVisitors = 0;
-    visitors.forEach((visitor) => {
-      sumOfVisitors = visitor.value + sumOfVisitors;
-      sumOfVisitors === 9 ? setDisabled(true) : setDisabled(false);
+  useEffect(
+    () => {
+      getTitleAndPrice();
+      getValue();
+    },
+    [visitors],
+    []
+  );
+
+  //get value
+  const getValue = () => {
+    visitors.forEach((item) => {
+      item.id === id && setValue(item.value);
     });
-  }, [visitors]);
+  };
 
   // get title and price
   const getTitleAndPrice = () => {
-    info.forEach((item) => {
+    titlesAndPrices.forEach((item) => {
       item.id === id &&
         setTitleAndPrice({ title: item.title, price: item.price });
     });
