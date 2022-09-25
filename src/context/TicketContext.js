@@ -9,12 +9,12 @@ export const TicketProvider = ({ children }) => {
     date: null,
     time: null,
     visitors: [
-      { id: "general", value: 0 },
-      { id: "under11", value: 0 },
-      { id: "disabled", value: 0 },
-      { id: "under30", value: 0 },
-      { id: "student", value: 0 },
-      { id: "senior", value: 0 },
+      { id: "general", value: 0, price: 26 },
+      { id: "under11", value: 0, price: 0 },
+      { id: "disabled", value: 0, price: 0 },
+      { id: "under30", value: 0, price: 24 },
+      { id: "student", value: 0, price: 24 },
+      { id: "senior", value: 0, price: 21 },
     ],
   });
 
@@ -79,6 +79,15 @@ export const TicketProvider = ({ children }) => {
     getSumOfVisitors();
   };
 
+  // calculatePrice
+  const calculatePrice = () => {
+    let price = 0;
+    userTicketData.visitors.forEach((item) => {
+      price += parseInt(item.value * item.price);
+    });
+    return price;
+  };
+
   return (
     <TicketContext.Provider
       value={{
@@ -90,6 +99,7 @@ export const TicketProvider = ({ children }) => {
         addVisitor,
         removeVisitor,
         showNextStep,
+        calculatePrice,
       }}
     >
       {children}

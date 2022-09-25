@@ -14,17 +14,17 @@ const headlineInfoArr = [
   {
     id: "calendar",
     text1: "When do you want to come?",
-    text2: "You selected date:",
+    text2: "Selected date:",
   },
   {
     id: "time",
     text1: "At what time?",
-    text2: "You selected time:",
+    text2: "Selected time:",
   },
   {
     id: "visitors",
     text1: "How many of you will be there?",
-    text2: "You selected this many visitors:",
+    text2: "Selected visitors:",
   },
 ];
 
