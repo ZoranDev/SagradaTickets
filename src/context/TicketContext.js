@@ -16,6 +16,7 @@ export const TicketProvider = ({ children }) => {
       { id: "student", value: 0, price: 24 },
       { id: "senior", value: 0, price: 21 },
     ],
+    personalInfo: null,
   });
 
   // State for active mid step in step 1
