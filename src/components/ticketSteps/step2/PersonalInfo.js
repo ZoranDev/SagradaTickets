@@ -38,7 +38,7 @@ const PersonalInfo = () => {
   };
 
   return (
-    <form className="w-full">
+    <div className="w-full">
       <h1 className="mb-2 w-full text-lg text-center">
         Enter your personal details to receive your tickets
       </h1>
@@ -70,7 +70,7 @@ const PersonalInfo = () => {
           <span className="mr-2 text-red-500">*</span>Required fields
         </p>
       </div>
-    </form>
+    </div>
   );
 };
 

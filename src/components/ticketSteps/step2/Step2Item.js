@@ -1,12 +1,13 @@
 // components
 import PersonalInfo from "../step2/PersonalInfo";
+import PaymentMethods from "./PaymentMethods";
 
 // Icons
 import { FaBars } from "react-icons/fa";
 
-const Step2Item = () => {
+const Step2Item = ({ id }) => {
   return (
-    <div className="w-full flex items-center justify-start flex-col">
+    <div className="w-full mb-4 flex items-center justify-start flex-col ">
       {/* Headline */}
       <div className="w-full mb-3 flex items-center justify-between">
         {/* Left icon */}
@@ -22,13 +23,17 @@ const Step2Item = () => {
           <div
             className={`w-[95%] h-[40px] px-5 py-[5px] bg-black text-white text-xl rounded-br-xl relative `}
           >
-            <h1>Personal data</h1>
+            {id === "personalInfo" ? (
+              <h1>Personal info</h1>
+            ) : (
+              <h1>Payment methods</h1>
+            )}
           </div>
         </div>
       </div>
 
       <div className={`w-[80%] flex items-center justify-center`}>
-        <PersonalInfo />
+        {id === "personalInfo" ? <PersonalInfo /> : <PaymentMethods />}
       </div>
     </div>
   );

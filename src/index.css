@@ -32,3 +32,12 @@
   transition: max-height 0.2s ease-in;
 }
  */
+
+.haj :checked {
+  background-color: red;
+}
+
+.haj:hover {
+  background-color: red;
+  border: 1px solid red;
+}
