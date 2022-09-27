@@ -1,17 +1,18 @@
 // react
-import { useState } from "react";
+import { useState, useContext } from "react";
+// context
+import TicketContext from "../../../context/TicketContext";
 
 // List of all countries
 const countryList = require("country-list").getData();
 
-const InputItem = ({
-  id,
-  title,
-  type,
-  handleOnChange,
-  value,
-  inputData: { email1, email2 },
-}) => {
+const InputItem = ({ id, title, type, handleOnChange, value }) => {
+  //Context
+  const {
+    userTicketData: {
+      personalInfo: { email1, email2 },
+    },
+  } = useContext(TicketContext);
   // State for labelUp
   const [labelUp, setLabelUp] = useState(false);
   // State for ok info
@@ -105,7 +106,7 @@ const InputItem = ({
             okInfo
               ? "border-neutral-300 shadow-[3px_3px_2px_rgba(0,0,0,0.3)]"
               : "border-red-500 shadow-[3px_3px_2px_rgba(255,0,0,0.3)]"
-          }    z-0`}
+          }   z-0`}
         />
       )}
       {error.active && (

@@ -1,12 +1,14 @@
 // React
 import { useState } from "react";
-// Icons
-import { FaTicketAlt, FaUserAlt, FaCreditCard, FaCheck } from "react-icons/fa";
+// Context
+import { TicketProvider } from "../context/TicketContext";
 // Components
 import TicketsStep1 from "./ticketSteps/step1/TicketsStep1";
 import TicketsStep2 from "./ticketSteps/step2/TicketsStep2";
-// Context
-import { TicketProvider } from "../context/TicketContext";
+import TicketsStep3 from "./ticketSteps/step3/TicketsStep3";
+import CalculatePrice from "./ticketSteps/CalculatePrice";
+// Icons
+import { FaTicketAlt, FaUserAlt, FaCreditCard, FaCheck } from "react-icons/fa";
 
 const Tickets = () => {
   // Active step - 1 (date,time,visitors), 2 (personal info), 3 (pay) - 4 (confirmation)
@@ -72,10 +74,13 @@ const Tickets = () => {
             <TicketsStep1 changeActiveStep={changeActiveStep} />
           )}
           {activeStep === 2 && <TicketsStep2 />}
+          {activeStep === 3 && <TicketsStep3 />}
+          <CalculatePrice
+            changeActiveStep={changeActiveStep}
+            activeStep={activeStep}
+          />
         </TicketProvider>
       </div>
-
-      {/*  */}
     </div>
   );
 };

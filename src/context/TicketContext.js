@@ -16,7 +16,19 @@ export const TicketProvider = ({ children }) => {
       { id: "student", value: 0, price: 24 },
       { id: "senior", value: 0, price: 21 },
     ],
-    personalInfo: null,
+    personalInfo: {
+      name: "",
+      lastName: "",
+      phone: "",
+      email1: "",
+      email2: "",
+      country: "",
+    },
+    termsAndConditions: {
+      general: false,
+      privacy: false,
+      information: false,
+    },
   });
 
   // State for active mid step in step 1
@@ -89,6 +101,57 @@ export const TicketProvider = ({ children }) => {
     return price;
   };
 
+  //addPersonalInfo
+  const addPersonalInfo = (e) => {
+    let whatToSet = e.target.id;
+    let value = e.target.value;
+    setUserTicketData({
+      ...userTicketData,
+      personalInfo: {
+        name: whatToSet === "name" ? value : userTicketData.personalInfo.name,
+        lastName:
+          whatToSet === "lastName"
+            ? value
+            : userTicketData.personalInfo.lastName,
+        phone:
+          whatToSet === "phone" ? value : userTicketData.personalInfo.phone,
+        email1:
+          whatToSet === "email1" ? value : userTicketData.personalInfo.email1,
+        email2:
+          whatToSet === "email2" ? value : userTicketData.personalInfo.email2,
+        country:
+          whatToSet === "country" ? value : userTicketData.personalInfo.country,
+      },
+    });
+  };
+
+  //setTermAndCondition
+  const setTermAndCondition = (e) => {
+    setUserTicketData({
+      ...userTicketData,
+      termsAndConditions: {
+        general:
+          e.target.value === "general"
+            ? e.target.checked
+              ? true
+              : false
+            : userTicketData.termsAndConditions.general,
+        privacy:
+          e.target.value === "privacy"
+            ? e.target.checked
+              ? true
+              : false
+            : userTicketData.termsAndConditions.privacy,
+        information:
+          e.target.value === "information"
+            ? e.target.checked
+              ? true
+              : false
+            : userTicketData.termsAndConditions.information,
+      },
+    });
+  };
+
   return (
     <TicketContext.Provider
       value={{
@@ -101,6 +164,8 @@ export const TicketProvider = ({ children }) => {
         removeVisitor,
         showNextStep,
         calculatePrice,
+        addPersonalInfo,
+        setTermAndCondition,
       }}
     >
       {children}

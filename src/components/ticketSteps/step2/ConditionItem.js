@@ -1,5 +1,7 @@
 // react
-import { useState } from "react";
+import { useState, useContext } from "react";
+// context
+import TicketContext from "../../../context/TicketContext";
 //icons
 import { FaExclamation } from "react-icons/fa";
 
@@ -16,6 +18,9 @@ const info = [
 ];
 
 const ConditionItem = ({ id }) => {
+  // Context
+  const { setTermAndCondition } = useContext(TicketContext);
+
   // State show message
   const [showReqiuredMessage, setShowRequiredMessage] = useState(false);
 
@@ -32,6 +37,7 @@ const ConditionItem = ({ id }) => {
         id={id}
         name={id}
         value={id}
+        onChange={setTermAndCondition}
         onMouseEnter={mouseEnter}
         onMouseLeave={mouseLeave}
         className={`w-[30px] h-[30px] mr-3 cursor-pointer bg-neutral-200 hover:bg-red-400 focus:ring-red-500 text-red-500 `}

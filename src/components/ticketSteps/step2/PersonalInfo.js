@@ -1,5 +1,7 @@
 //react
-import { useState } from "react";
+import { useContext } from "react";
+// context
+import TicketContext from "../../../context/TicketContext";
 // components
 import InputItem from "./InputItem";
 
@@ -13,29 +15,13 @@ const info = [
 ];
 
 const PersonalInfo = () => {
-  // State for input data
-  const [inputData, setInputData] = useState({
-    name: "",
-    lastName: "",
-    phone: "",
-    email1: "",
-    email2: "",
-    country: "",
-  });
-
-  //handleOnChange
-  const handleOnChange = (e) => {
-    let whatToSet = e.target.id;
-    let value = e.target.value;
-    setInputData({
-      name: whatToSet === "name" ? value : inputData.name,
-      lastName: whatToSet === "lastName" ? value : inputData.lastName,
-      phone: whatToSet === "phone" ? value : inputData.phone,
-      email1: whatToSet === "email1" ? value : inputData.email1,
-      email2: whatToSet === "email2" ? value : inputData.email2,
-      country: whatToSet === "country" ? value : inputData.country,
-    });
-  };
+  // Context
+  const {
+    addPersonalInfo,
+    userTicketData: {
+      personalInfo: { name, lastName, phone, email1, email2, country },
+    },
+  } = useContext(TicketContext);
 
   return (
     <div className="w-full">
@@ -49,20 +35,19 @@ const PersonalInfo = () => {
             title={item.title}
             type={item.type}
             key={index}
-            handleOnChange={handleOnChange}
-            inputData={inputData}
+            handleOnChange={addPersonalInfo}
             value={
               item.id === "name"
-                ? inputData.name
+                ? name
                 : item.id === "lastName"
-                ? inputData.lastName
+                ? lastName
                 : item.id === "phone"
-                ? inputData.phone
+                ? phone
                 : item.id === "email1"
-                ? inputData.email1
+                ? email1
                 : item.id === "email2"
-                ? inputData.email2
-                : inputData.country
+                ? email2
+                : country
             }
           />
         ))}
