@@ -79,8 +79,10 @@ const InputItem = ({
           id={id}
           required={true}
           className={`w-full h-full p-3 focus:outline-0 border-2 ${
-            okInfo ? "border-neutral-300" : "border-red-500"
-          }  shadow-[3px_3px_2px_rgba(0,0,0,0.3)] z-0`}
+            okInfo
+              ? "border-neutral-300 shadow-[3px_3px_2px_rgba(0,0,0,0.3)]"
+              : "border-red-500 shadow-[3px_3px_2px_rgba(255,0,0,0.3)]"
+          }   z-0`}
         >
           <option value=""></option>
           {countryList.map((item, index) => (
@@ -100,8 +102,10 @@ const InputItem = ({
           value={value}
           required={true}
           className={`w-full h-full p-3 focus:outline-0 border-2 ${
-            okInfo ? "border-neutral-300" : "border-red-500"
-          }   shadow-[3px_3px_2px_rgba(0,0,0,0.3)] z-0`}
+            okInfo
+              ? "border-neutral-300 shadow-[3px_3px_2px_rgba(0,0,0,0.3)]"
+              : "border-red-500 shadow-[3px_3px_2px_rgba(255,0,0,0.3)]"
+          }    z-0`}
         />
       )}
       {error.active && (
