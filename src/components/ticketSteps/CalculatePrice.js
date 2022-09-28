@@ -15,6 +15,7 @@ const CalculatePrice = ({ changeActiveStep, activeStep }) => {
       time,
       personalInfo: { name, lastName, email1, email2, phone, country },
       termsAndConditions: { general, privacy, information },
+      creditCardInfo: { num1, num2, num3, num4, month, year, cvc },
     },
     sumOfVisitors,
   } = useContext(TicketContext);
@@ -23,27 +24,51 @@ const CalculatePrice = ({ changeActiveStep, activeStep }) => {
   const [moveOn, setMoveOn] = useState(false);
 
   useEffect(() => {
-    activeStep === 1 && date && time && sumOfVisitors !== 0
-      ? setMoveOn(true)
-      : setMoveOn(false);
-    activeStep === 2 &&
-    name !== "" &&
-    lastName !== "" &&
-    phone !== "" &&
-    country !== "" &&
-    email1 !== "" &&
-    email2 !== "" &&
-    general &&
-    privacy
-      ? setMoveOn(true)
-      : setMoveOn(false);
-  }, [userTicketData]);
+    setMoveOn(false);
+    activeStep === 1 && isStep1Fulfiled() && setMoveOn(true);
+    activeStep === 2 && isStep2Fulfiled() && setMoveOn(true);
+    activeStep === 3 && isStep3Fulfiled() && setMoveOn(true);
+  }, [userTicketData, activeStep]);
 
   //handleClick
   const handleClick = () => {
-    activeStep === 1 && date && time && sumOfVisitors !== 0
+    moveOn && activeStep === 1
       ? changeActiveStep(2)
-      : changeActiveStep(3);
+      : activeStep === 2
+      ? changeActiveStep(3)
+      : changeActiveStep(4);
+  };
+
+  // check if have all info for step 1
+  const isStep1Fulfiled = () => {
+    return date && time && sumOfVisitors !== 0;
+  };
+
+  // check if have all info for step 2
+  const isStep2Fulfiled = () => {
+    return (
+      name !== "" &&
+      lastName !== "" &&
+      phone !== "" &&
+      country !== "" &&
+      email1 !== "" &&
+      email2 !== "" &&
+      general &&
+      privacy
+    );
+  };
+
+  //isStep3Fulfiled
+  const isStep3Fulfiled = () => {
+    return (
+      num1 !== "" &&
+      num2 !== 0 &&
+      num3 !== "" &&
+      num4 !== "" &&
+      month !== "" &&
+      year !== "" &&
+      cvc !== ""
+    );
   };
 
   return (

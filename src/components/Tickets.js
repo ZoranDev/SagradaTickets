@@ -6,6 +6,7 @@ import { TicketProvider } from "../context/TicketContext";
 import TicketsStep1 from "./ticketSteps/step1/TicketsStep1";
 import TicketsStep2 from "./ticketSteps/step2/TicketsStep2";
 import TicketsStep3 from "./ticketSteps/step3/TicketsStep3";
+import TicketsStep4 from "./ticketSteps/step4/TicketsStep4";
 import CalculatePrice from "./ticketSteps/CalculatePrice";
 // Icons
 import { FaTicketAlt, FaUserAlt, FaCreditCard, FaCheck } from "react-icons/fa";
@@ -75,6 +76,7 @@ const Tickets = () => {
           )}
           {activeStep === 2 && <TicketsStep2 />}
           {activeStep === 3 && <TicketsStep3 />}
+          {activeStep === 4 && <TicketsStep4 />}
           <CalculatePrice
             changeActiveStep={changeActiveStep}
             activeStep={activeStep}

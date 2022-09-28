@@ -29,6 +29,15 @@ export const TicketProvider = ({ children }) => {
       privacy: false,
       information: false,
     },
+    creditCardInfo: {
+      num1: "",
+      num2: "",
+      num3: "",
+      num4: "",
+      month: "",
+      year: "",
+      cvc: "",
+    },
   });
 
   // State for active mid step in step 1
@@ -152,6 +161,26 @@ export const TicketProvider = ({ children }) => {
     });
   };
 
+  //getCardNumber
+  const getCardNumber = (e) => {
+    let whatToSet = e.target.id;
+    let value = e.target.value;
+    console.log(123);
+    setUserTicketData({
+      ...userTicketData,
+      creditCardInfo: {
+        num1: whatToSet === "num1" ? value : userTicketData.creditCardInfo.num1,
+        num2: whatToSet === "num2" ? value : userTicketData.creditCardInfo.num2,
+        num3: whatToSet === "num3" ? value : userTicketData.creditCardInfo.num3,
+        num4: whatToSet === "num4" ? value : userTicketData.creditCardInfo.num4,
+        month:
+          whatToSet === "month" ? value : userTicketData.creditCardInfo.month,
+        year: whatToSet === "year" ? value : userTicketData.creditCardInfo.year,
+        cvc: whatToSet === "cvc" ? value : userTicketData.creditCardInfo.cvc,
+      },
+    });
+  };
+
   return (
     <TicketContext.Provider
       value={{
@@ -166,6 +195,7 @@ export const TicketProvider = ({ children }) => {
         calculatePrice,
         addPersonalInfo,
         setTermAndCondition,
+        getCardNumber,
       }}
     >
       {children}
