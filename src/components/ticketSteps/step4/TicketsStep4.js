@@ -30,14 +30,13 @@ const TicketsStep4 = () => {
 
       <div>
         {/* Order title */}
-        <div className="w-full mb-3 flex items-center justify-between border-b-[1px] border-rose-500">
-          <h1 className="w-2/4 text-center text-xl font-bold">Product</h1>
-          <h1 className="w-2/4 text-center text-xl font-bold">Info</h1>
+        <div className="w-full mb-3 flex items-center justify-center border-b-[1px] border-rose-500">
+          <h1 className="w-2/4 text-center text-xl font-bold">Order Info</h1>
         </div>
         {/* Order body */}
-        <div className="w-full flex items-start justify-between border-b-[1px] border-rose-500">
+        <div className="w-full flex flex-col items-start justify-center border-b-[1px] border-rose-500 sm:flex-row sm:justify-between">
           {/* left */}
-          <div className="w-2/4 mb-3 flex flex-col items-center">
+          <div className="w-full mb-3 flex flex-col items-center sm:w-2/4">
             <img
               className="w-[240px] mb-2"
               src="https://sagradafamilia-tickets.com/wp-content/uploads/2020/03/9-300x300.jpg"
@@ -46,7 +45,7 @@ const TicketsStep4 = () => {
             <p className="text-lg italic">Sagrada familia tickets</p>
           </div>
           {/* right */}
-          <div className="w-2/4 mb-3">
+          <div className="w-full mb-3 sm:w-2/4 ">
             <div className="w-full flex items-center justify-left">
               <h2 className="w-2/4 text-lg text-rose-500 font-bold">
                 Visitors:
