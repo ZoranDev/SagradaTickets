@@ -19,13 +19,13 @@ const TicketsStep4 = () => {
         <h1 className="text-3xl text-center font-bold ">
           Your order has beeen received
         </h1>
-        <div className="w-[80px] h-[80px] mx-auto my-3 bg-green-500 rounded-full flex items-center justify-center">
+        <div className="w-[60px] h-[60px] mx-auto my-3 bg-green-500 rounded-full flex items-center justify-center">
           <FaCheck className="text-2xl text-white" />
         </div>
         <p className="w-full text-center text-md">
           Thank you for your purchase!
         </p>
-        <p className="my-3 text-xl text-center">ORDER ID: here go order id</p>
+        <p className="my-3 text-md text-center">ORDER ID: here go order id</p>
       </div>
 
       <div>
