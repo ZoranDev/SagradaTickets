@@ -104,131 +104,129 @@ const TicketsStep3 = () => {
   const mouseLeave = () => setShowImage(false);
 
   return (
-    <div className="w-full flex flex-col items-center justify-center ">
-      <div className="w-[450px] px-5 py-7 border-2 border-neutral-400 rounded shadow-[0_10px_10px_rgba(0,0,0,0.5)]">
-        <h1 className="w-full mb-3 text-center text-lg text-neutral-700">
-          Almost done!
-        </h1>
-        {/* Card number */}
-        <div className="w-full mb-2">
-          <h2 className="w-full py-2 px-4 text-xl bg-transparent text-neutral-500">
-            Card number:
-          </h2>
-          <div
-            className={`h-[50px] py-2 px-4 flex items-center justify-between ${
-              !cardNumberErr
-                ? "border-2 border-neutral-300"
-                : "border-2 border-red-400"
-            } `}
+    <div className="w-[95%] mx-auto px-2 py-7 border-2 border-neutral-400 rounded shadow-[0_10px_10px_rgba(0,0,0,0.5)] sm:w-[450px] sm:px-5">
+      <h1 className="w-full mb-3 text-center text-lg text-neutral-700">
+        Almost done!
+      </h1>
+      {/* Card number */}
+      <div className="w-full mb-2">
+        <h2 className="w-full py-2 px-4 text-xl bg-transparent text-neutral-500">
+          Card number:
+        </h2>
+        <div
+          className={`h-[50px] py-2 px-4 flex items-center justify-between ${
+            !cardNumberErr
+              ? "border-2 border-neutral-300"
+              : "border-2 border-red-400"
+          } `}
+        >
+          {["num1", "num2", "num3", "num4"].map((item, index) => (
+            <input
+              key={index}
+              name={item}
+              value={
+                item === "num1"
+                  ? num1
+                  : item === "num2"
+                  ? num2
+                  : item === "num3"
+                  ? num3
+                  : num4
+              }
+              onChange={handleOnChange}
+              type="text"
+              id={item}
+              maxLength={4}
+              placeholder="0000"
+              className="w-[50px] py-1 text-center text-xl text-neutral-500 bg-transparent border-0 placeholder:text-neutral-500 focus:outline-0 sm:px-2 sm:w-[80px]"
+            />
+          ))}
+        </div>
+        {cardNumberErr && (
+          <div className="flex items-center justify-left text-red-500">
+            <FaExclamationTriangle className="mr-2" /> Check card number!
+          </div>
+        )}
+      </div>
+
+      {/* Expire date */}
+      <div className="w-full mb-2">
+        <h2 className="w-full py-2 px-4 text-xl bg-transparent text-neutral-500">
+          Expire date
+        </h2>
+        <div className="w-full h-[50px] flex items-center">
+          {/* Month */}
+          <select
+            name="expireMonth"
+            id="month"
+            className="h-full w-2/4 py-2 px-4 border-2 border-r-0 border-neutral-300 cursor-pointer text-xl text-neutral-500 focus:outline-0"
+            onChange={handleOnChange}
           >
-            {["num1", "num2", "num3", "num4"].map((item, index) => (
-              <input
-                key={index}
-                name={item}
-                value={
-                  item === "num1"
-                    ? num1
-                    : item === "num2"
-                    ? num2
-                    : item === "num3"
-                    ? num3
-                    : num4
-                }
-                onChange={handleOnChange}
-                type="text"
-                id={item}
-                maxLength={4}
-                placeholder="0000"
-                className="w-[80px] px-2 py-1 text-center text-xl text-neutral-500 bg-transparent border-0 placeholder:text-neutral-500 focus:outline-0"
-              />
+            <option value="default">MM</option>
+            {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12].map((item, index) => (
+              <option key={index} value={item}>
+                {item}
+              </option>
             ))}
-          </div>
-          {cardNumberErr && (
-            <div className="flex items-center justify-left text-red-500">
-              <FaExclamationTriangle className="mr-2" /> Check card number!
-            </div>
-          )}
+          </select>
+          {/* Year */}
+          <select
+            name="expireYear"
+            id="year"
+            onChange={handleOnChange}
+            className="h-full w-2/4 py-2 px-4 border-2 border-neutral-300 cursor-pointer text-neutral-500 text-xl focus:outline-0"
+          >
+            <option value="default">YY</option>
+            {[0, 1, 2, 3, 4, 5, 6, 7, 9].map((item, index) => (
+              <option key={index} value={currentYear + item}>
+                {currentYear + item}
+              </option>
+            ))}
+          </select>
         </div>
+        {expireDateErr && (
+          <div className="flex items-center justify-left text-red-500">
+            <FaExclamationTriangle className="mr-2" /> Check expire date!
+          </div>
+        )}
+      </div>
 
-        {/* Expire date */}
-        <div className="w-full mb-2">
-          <h2 className="w-full py-2 px-4 text-xl bg-transparent text-neutral-500">
-            Expire date
-          </h2>
-          <div className="w-full h-[50px] flex items-center">
-            {/* Month */}
-            <select
-              name="expireMonth"
-              id="month"
-              className="h-full w-2/4 py-2 px-4 border-2 border-r-0 border-neutral-300 cursor-pointer text-xl text-neutral-500 focus:outline-0"
+      {/* CVC */}
+      <div className="w-full">
+        <h2 className="w-full py-2 px-4 text-xl bg-transparent text-neutral-500">
+          CVC
+        </h2>
+        <div className="h-[50px] relative ">
+          <div className="w-2/4 h-full border-2 border-neutral-300 flex items-center justify-between relative">
+            <input
+              type="text"
+              name="cvc"
+              placeholder="CVC"
+              className="w-full h-full py-2 px-4 text-xl border-0 focus:outline-0 text-left text-neutral-500 placeholder:text-neutral-500"
+              id="cvc"
+              maxLength={3}
+              value={cvc}
               onChange={handleOnChange}
-            >
-              <option value="default">MM</option>
-              {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12].map((item, index) => (
-                <option key={index} value={item}>
-                  {item}
-                </option>
-              ))}
-            </select>
-            {/* Year */}
-            <select
-              name="expireYear"
-              id="year"
-              onChange={handleOnChange}
-              className="h-full w-2/4 py-2 px-4 border-2 border-neutral-300 cursor-pointer text-neutral-500 text-xl focus:outline-0"
-            >
-              <option value="default">YY</option>
-              {[0, 1, 2, 3, 4, 5, 6, 7, 9].map((item, index) => (
-                <option key={index} value={currentYear + item}>
-                  {currentYear + item}
-                </option>
-              ))}
-            </select>
+            />
+            <FaQuestion
+              onMouseEnter={mouseEnter}
+              onMouseLeave={mouseLeave}
+              className="absolute right-0 t-2/4 text-neutral-500 hover:text-red-500 cursor-pointer"
+            />
           </div>
-          {expireDateErr && (
-            <div className="flex items-center justify-left text-red-500">
-              <FaExclamationTriangle className="mr-2" /> Check expire date!
-            </div>
+          {showImage && (
+            <img
+              src="https://ccbill.com/kb/wp-content/uploads/2022/04/cvv-cvc-location-payment-card.jpg"
+              alt=""
+              className="w-[200px] h-[100px] rounded-lg absolute -top-[100px]"
+            />
           )}
         </div>
-
-        {/* CVC */}
-        <div className="w-full">
-          <h2 className="w-full py-2 px-4 text-xl bg-transparent text-neutral-500">
-            CVC
-          </h2>
-          <div className="h-[50px] relative ">
-            <div className="w-2/4 h-full border-2 border-neutral-300 flex items-center justify-between relative">
-              <input
-                type="text"
-                name="cvc"
-                placeholder="CVC"
-                className="w-full h-full py-2 px-4 text-xl border-0 focus:outline-0 text-left text-neutral-500 placeholder:text-neutral-500"
-                id="cvc"
-                maxLength={3}
-                value={cvc}
-                onChange={handleOnChange}
-              />
-              <FaQuestion
-                onMouseEnter={mouseEnter}
-                onMouseLeave={mouseLeave}
-                className="absolute right-0 t-2/4 text-neutral-500 hover:text-red-500 cursor-pointer"
-              />
-            </div>
-            {showImage && (
-              <img
-                src="https://ccbill.com/kb/wp-content/uploads/2022/04/cvv-cvc-location-payment-card.jpg"
-                alt=""
-                className="w-[200px] h-[100px] rounded-lg absolute -top-[100px]"
-              />
-            )}
+        {cvcErr && (
+          <div className="flex items-center justify-left text-red-500">
+            <FaExclamationTriangle className="mr-2" /> Check cvc!
           </div>
-          {cvcErr && (
-            <div className="flex items-center justify-left text-red-500">
-              <FaExclamationTriangle className="mr-2" /> Check cvc!
-            </div>
-          )}
-        </div>
+        )}
       </div>
     </div>
   );
