@@ -19,7 +19,7 @@ const info = [
 
 const ConditionItem = ({ id }) => {
   // Context
-  const { setTermAndCondition } = useContext(TicketContext);
+  const { fillTermAndCondition } = useContext(TicketContext);
 
   // State show message
   const [showReqiuredMessage, setShowRequiredMessage] = useState(false);
@@ -37,13 +37,13 @@ const ConditionItem = ({ id }) => {
         id={id}
         name={id}
         value={id}
-        onChange={setTermAndCondition}
+        onChange={fillTermAndCondition}
         onMouseEnter={mouseEnter}
         onMouseLeave={mouseLeave}
         className={`w-[30px] h-[30px] mr-3 cursor-pointer bg-neutral-200 hover:bg-red-400 focus:ring-red-500 text-red-500 `}
       />
       {info.map((item, index) => (
-        <label key={index} htmlFor="generalConditions">
+        <label key={index} htmlFor={item.id}>
           {item.id === id && item.text}
         </label>
       ))}

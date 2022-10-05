@@ -71,16 +71,16 @@ const Tickets = () => {
 
         {/* Steps */}
         <TicketProvider>
-          {activeStep === 1 && (
-            <TicketsStep1 changeActiveStep={changeActiveStep} />
-          )}
+          {activeStep === 1 && <TicketsStep1 />}
           {activeStep === 2 && <TicketsStep2 />}
           {activeStep === 3 && <TicketsStep3 />}
           {activeStep === 4 && <TicketsStep4 />}
-          <CalculatePrice
-            changeActiveStep={changeActiveStep}
-            activeStep={activeStep}
-          />
+          {activeStep !== 4 && (
+            <CalculatePrice
+              changeActiveStep={changeActiveStep}
+              activeStep={activeStep}
+            />
+          )}
         </TicketProvider>
       </div>
     </div>

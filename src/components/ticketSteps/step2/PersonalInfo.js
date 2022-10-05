@@ -1,11 +1,11 @@
-//react
+// react
 import { useContext } from "react";
 // context
 import TicketContext from "../../../context/TicketContext";
 // components
 import InputItem from "./InputItem";
 
-const info = [
+const formInputs = [
   { id: "name", title: "Name", type: "text" },
   { id: "lastName", title: "Last Name", type: "text" },
   { id: "phone", title: "Phone", type: "text" },
@@ -17,7 +17,6 @@ const info = [
 const PersonalInfo = () => {
   // Context
   const {
-    addPersonalInfo,
     userTicketData: {
       personalInfo: { name, lastName, phone, email1, email2, country },
     },
@@ -29,13 +28,12 @@ const PersonalInfo = () => {
         Enter your personal details to receive your tickets
       </h1>
       <div className="w-full flex items-center justify-between flex-wrap">
-        {info.map((item, index) => (
+        {formInputs.map((item, index) => (
           <InputItem
+            key={index}
             id={item.id}
             title={item.title}
             type={item.type}
-            key={index}
-            handleOnChange={addPersonalInfo}
             value={
               item.id === "name"
                 ? name

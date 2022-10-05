@@ -23,6 +23,7 @@ export const TicketProvider = ({ children }) => {
       email1: "",
       email2: "",
       country: "",
+      isErrInForm: false,
     },
     termsAndConditions: {
       general: false,
@@ -34,9 +35,10 @@ export const TicketProvider = ({ children }) => {
       num2: "",
       num3: "",
       num4: "",
-      month: "",
-      year: "",
+      expireMonth: "",
+      expireYear: "",
       cvc: "",
+      isErrInCardInfo: false,
     },
   });
 
@@ -110,73 +112,57 @@ export const TicketProvider = ({ children }) => {
     return price;
   };
 
-  //addPersonalInfo
-  const addPersonalInfo = (e) => {
-    let whatToSet = e.target.id;
-    let value = e.target.value;
+  // fillPersonalInfo
+  const fillPersonalInfo = (e) => {
     setUserTicketData({
       ...userTicketData,
       personalInfo: {
-        name: whatToSet === "name" ? value : userTicketData.personalInfo.name,
-        lastName:
-          whatToSet === "lastName"
-            ? value
-            : userTicketData.personalInfo.lastName,
-        phone:
-          whatToSet === "phone" ? value : userTicketData.personalInfo.phone,
-        email1:
-          whatToSet === "email1" ? value : userTicketData.personalInfo.email1,
-        email2:
-          whatToSet === "email2" ? value : userTicketData.personalInfo.email2,
-        country:
-          whatToSet === "country" ? value : userTicketData.personalInfo.country,
+        ...userTicketData.personalInfo,
+        [e.target.name]: e.target.value,
       },
     });
   };
 
-  //setTermAndCondition
-  const setTermAndCondition = (e) => {
+  // isErrorInPersonalInfo
+  const isErrorInPersonalInfo = (err) => {
+    setUserTicketData({
+      ...userTicketData,
+      personalInfo: {
+        ...userTicketData.personalInfo,
+        isErrInForm: err,
+      },
+    });
+  };
+
+  //fillTermAndCondition
+  const fillTermAndCondition = (e) => {
     setUserTicketData({
       ...userTicketData,
       termsAndConditions: {
-        general:
-          e.target.value === "general"
-            ? e.target.checked
-              ? true
-              : false
-            : userTicketData.termsAndConditions.general,
-        privacy:
-          e.target.value === "privacy"
-            ? e.target.checked
-              ? true
-              : false
-            : userTicketData.termsAndConditions.privacy,
-        information:
-          e.target.value === "information"
-            ? e.target.checked
-              ? true
-              : false
-            : userTicketData.termsAndConditions.information,
+        ...userTicketData.termsAndConditions,
+        [e.target.name]: e.target.checked,
       },
     });
   };
 
-  //getCardNumber
-  const getCardNumber = (e) => {
-    let whatToSet = e.target.id;
-    let value = e.target.value;
-    console.log(123);
+  // fillCardInfo
+  const fillCardInfo = (e) => {
     setUserTicketData({
       ...userTicketData,
       creditCardInfo: {
-        num1: whatToSet === "num1" ? value : userTicketData.creditCardInfo.num1,
-        num2: whatToSet === "num2" ? value : userTicketData.creditCardInfo.num2,
-        num3: whatToSet === "num3" ? value : userTicketData.creditCardInfo.num3,
-        num4: whatToSet === "num4" ? value : userTicketData.creditCardInfo.num4,
-        month:
-          whatToSet === "month" ? value : userTicketData.creditCardInfo.month,
-        year: whatToSet === "year" ? value : userTicketData.creditCardInfo.year,
-        cvc: whatToSet === "cvc" ? value : userTicketData.creditCardInfo.cvc,
+        ...userTicketData.creditCardInfo,
+        [e.target.name]: e.target.value,
+      },
+    });
+  };
+
+  // isErrorInCreditCardInfo
+  const isErrorInCreditCardInfo = (err) => {
+    setUserTicketData({
+      ...userTicketData,
+      creditCardInfo: {
+        ...userTicketData.creditCardInfo,
+        isErrInCardInfo: err,
       },
     });
   };
@@ -193,9 +179,11 @@ export const TicketProvider = ({ children }) => {
         removeVisitor,
         showNextStep,
         calculatePrice,
-        addPersonalInfo,
-        setTermAndCondition,
-        getCardNumber,
+        fillPersonalInfo,
+        isErrorInPersonalInfo,
+        fillTermAndCondition,
+        fillCardInfo,
+        isErrorInCreditCardInfo,
       }}
     >
       {children}
