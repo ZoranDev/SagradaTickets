@@ -79,7 +79,7 @@ const InputItem = ({ id, title, type, value }) => {
   };
 
   return (
-    <div className="w-[350px] bg-blue-200 mx-4 my-5 relative">
+    <div className="w-full bg-blue-200 my-5 mx-2 relative sm:w-[350px] sm:mx-4">
       <label
         htmlFor={id}
         className={`p-1 bg-white absolute ${

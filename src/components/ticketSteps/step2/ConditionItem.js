@@ -31,7 +31,7 @@ const ConditionItem = ({ id }) => {
   const mouseLeave = () => setShowRequiredMessage(false);
 
   return (
-    <div className="flex items-center justify-left mb-2 relative">
+    <div className="w-full mb-4 relative ">
       <input
         type="checkbox"
         id={id}
@@ -40,8 +40,9 @@ const ConditionItem = ({ id }) => {
         onChange={fillTermAndCondition}
         onMouseEnter={mouseEnter}
         onMouseLeave={mouseLeave}
-        className={`w-[30px] h-[30px] mr-3 cursor-pointer bg-neutral-200 hover:bg-red-400 focus:ring-red-500 text-red-500 `}
+        className={` mr-3 cursor-pointer bg-neutral-200 hover:bg-red-400 focus:ring-red-500 text-red-500 `}
       />
+
       {info.map((item, index) => (
         <label key={index} htmlFor={item.id}>
           {item.id === id && item.text}
@@ -51,7 +52,7 @@ const ConditionItem = ({ id }) => {
       {/* Required message div */}
       {(id === "general" || id === "privacy") && (
         <div
-          className={`bg-red-500 px-3 py-1 -translate-0-9 translate-x-[40px] absolute ${
+          className={`bg-red-500 px-3 py-1 top-0 left-0 translate-x-[40px] absolute ${
             !showReqiuredMessage
               ? "opacity-0"
               : " opacity-1 transition-opacity duration-[600ms]"

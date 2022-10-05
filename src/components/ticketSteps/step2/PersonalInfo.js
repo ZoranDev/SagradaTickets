@@ -27,7 +27,7 @@ const PersonalInfo = () => {
       <h1 className="mb-2 w-full text-lg text-center">
         Enter your personal details to receive your tickets
       </h1>
-      <div className="w-full flex items-center justify-between flex-wrap">
+      <div className="w-full flex items-center justify-center flex-wrap ">
         {formInputs.map((item, index) => (
           <InputItem
             key={index}
@@ -49,10 +49,10 @@ const PersonalInfo = () => {
             }
           />
         ))}
-        <p>
-          <span className="mr-2 text-red-500">*</span>Required fields
-        </p>
       </div>
+      <p>
+        <span className="mr-2 text-red-500">*</span>Required fields
+      </p>
     </div>
   );
 };
