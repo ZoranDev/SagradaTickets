@@ -120,11 +120,11 @@ const AddRemoveVisitor = ({ id }) => {
   };
 
   return (
-    <div className="w-[48%] my-3 flex items-center justify-between">
+    <div className="w-full my-3 flex items-center justify-between sm:w-[48%]">
       {/* Title */}
       <h1>{titleAndPrice.title}</h1>
       {/* Price and add or remove visitors */}
-      <div className="flex items-center justify-center text-md font-bold">
+      <div className="ml-2 flex items-center justify-center text-md font-bold">
         <h1 className="mr-2">{titleAndPrice.price}€</h1>
         <div className="w-[110px] flex items-center justify-center">
           <FaMinus

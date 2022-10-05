@@ -106,7 +106,7 @@ const Step1Item = ({ id }) => {
         {/* Text content */}
         <div
           className={`${
-            !haveData || (haveData && active) ? "w-[90%]" : "w-[80%]"
+            !haveData || (haveData && active) ? "w-[90%]" : "w-[77%]"
           } flex items-center justify-left`}
         >
           {/* Ukrasni div */}
@@ -128,15 +128,19 @@ const Step1Item = ({ id }) => {
             {/* date,time or sumofvisitors */}
             {haveData ? (
               <div className="w-full flex items-center justify-between">
-                <h1>{headlineInfo.text2}</h1>
-                <h1>
-                  {id === "calendar" && new Date(date).toString().slice(0, 15)}
+                <h1 className="h-[30px] flex items-center text-sm sm:text-lg">
+                  {headlineInfo.text2}
+                </h1>
+                <h1 className="h-full flex items-center text-sm sm:text-lg">
+                  {id === "calendar" && new Date(date).toString().slice(4, 15)}
                   {id === "time" && time}
                   {id === "visitors" && sumOfVisitors}
                 </h1>
               </div>
             ) : (
-              <h1>{headlineInfo.text1}</h1>
+              <h1 className="h-full flex items-center text-sm sm:text-lg">
+                {headlineInfo.text1}
+              </h1>
             )}
           </div>
         </div>
@@ -149,7 +153,7 @@ const Step1Item = ({ id }) => {
         )}
       </div>
 
-      <div className={`w-[80%] flex items-center justify-center`}>
+      <div className={`w-[100%] flex items-center justify-center`}>
         {id === "calendar" && step1ActiveMidStep === "calendar" && (
           <CalendarsContainer selectDate={selectDate} />
         )}

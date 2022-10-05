@@ -43,7 +43,7 @@ const CalendarsContainer = ({ selectDate }) => {
 
   return (
     allMonthsToDisplay.length !== 0 && (
-      <div className="pb-3 px-4 overflow-auto flex flex-col justify-center items-baseline sm:flex-row">
+      <div className="pb-3 overflow-auto flex flex-col justify-center items-baseline sm:flex-row sm:px-4">
         <Calendar
           year={allMonthsToDisplay[indexCalendar].year}
           month={allMonthsToDisplay[indexCalendar].month}

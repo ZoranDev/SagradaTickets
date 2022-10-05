@@ -21,7 +21,7 @@ const Tickets = () => {
   };
 
   return (
-    <div className="w-full mx-auto px-3 py-5 bg-transparent lg:px-[100px]">
+    <div className="w-full mx-auto  py-5 bg-transparent lg:px-[100px] sm:px-3">
       {/* Display active step section */}
       <div className={`w-full flex items-center justify-center mb-5`}>
         {[

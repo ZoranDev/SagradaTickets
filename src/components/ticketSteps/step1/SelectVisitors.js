@@ -5,12 +5,12 @@ import { FaExclamationCircle } from "react-icons/fa";
 
 const SelectVisitors = () => {
   return (
-    <div className="w-full flex flex-col items-center">
+    <div className="w-[80%] flex flex-col items-center">
       <h1 className="mb-3">
         Select the number of people by type of entry. The maximum number of
         entries must be between 1 and 9.
       </h1>
-      <div className="mb-3 flex items-center justify-between flex-wrap">
+      <div className="mb-3 flex flex-col items-center justify-between flex-wrap sm:flex-row">
         {["general", "under11", "disabled", "under30", "student", "senior"].map(
           (item, index) => (
             <AddRemoveVisitor id={item} key={index} />
