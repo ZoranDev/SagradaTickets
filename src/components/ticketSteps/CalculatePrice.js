@@ -108,8 +108,8 @@ const CalculatePrice = ({ changeActiveStep, activeStep }) => {
   };
 
   return (
-    <div className="w-full mt-6 flex items-center justify-end">
-      <div className="flex flex-col items-center justify-center">
+    <div className="w-full mt-6 flex flex-col items-center justify-end sm:flex-rox">
+      <div className="mb-3 flex flex-col items-center justify-center sm:mb-0">
         <h1 className="w-full text-md uppercase text-center">Total amount</h1>
         <h1 className="w-full text-3xl font-bold text-center">
           {calculatePrice()}
