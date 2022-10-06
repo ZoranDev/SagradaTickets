@@ -7,5 +7,12 @@ module.exports = {
         height: "height",
       },
     },
+    keyframes: {
+      covid: {
+        "0%": { left: "-1300px" },
+        "20%,80%": { left: "0px" },
+        "100%": { left: "1300px" },
+      },
+    },
   },
 };
