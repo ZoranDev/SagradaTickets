@@ -1,3 +1,4 @@
+// router dom
 import { Link } from "react-router-dom";
 
 const Home = () => {
@@ -6,8 +7,8 @@ const Home = () => {
       {/* Image and text section */}
       <div className="w-full mb-5 flex flex-col justify-center items-center lg:flex-row lg:items-start lg:justify-between lg:mb-0">
         {/* Images */}
-        <div className="w-full min-w-[290px] max-w-[500px] mb-5 p-2 lg:w-[30%] lg:p-0 lg:mb-0">
-          <img src="/sagrada.jpg" alt="Sagrada familia" className="" />
+        <div className="w-full min-w-[290px] max-w-[500px] mb-5 p-2 lg:w-[40%] lg:p-0 lg:mb-0 ">
+          <img src="/sagrada.jpg" alt="Sagrada familia" />
           {/* Restrictions */}
           <div className="w-full mt-5 flex items-center justify-between">
             <img
@@ -72,7 +73,7 @@ const Home = () => {
       <Link
         to="/tickets"
         children={
-          <button className="my-5 px-20 py-5 bg-red-600 text-white text-xl rounded-3xl cursor-pointer hover:bg-red-500 active:scale-[0.98]">
+          <button className="my-5 px-20 py-5 bg-red-600 text-white text-xl rounded-3xl cursor-pointer shadow-[0_0_0_0_rgba(219,92,92)] hover:shadow-[0_0_0_20px_transparent] hover:transition-shadow hover:duration-[600ms]  active:scale-[0.98]">
             Get Tiquets
           </button>
         }
