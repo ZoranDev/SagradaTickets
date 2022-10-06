@@ -69,17 +69,17 @@ export const TicketProvider = ({ children }) => {
   };
 
   // selectTime
-  const selectTime = (e) => {
-    setUserTicketData({ ...userTicketData, time: e.target.id });
+  const selectTime = (hour) => {
+    setUserTicketData({ ...userTicketData, time: hour });
     setStep1ActiveMidStep("visitors");
   };
 
   //addVisitor
-  const addVisitor = (id) => {
+  const addVisitor = (id, maxVisitors) => {
     setUserTicketData({
       ...userTicketData,
       visitors: userTicketData.visitors.map((visitor) => {
-        if (visitor.id === id) {
+        if (visitor.id === id && maxVisitors > sumOfVisitors) {
           visitor.value += 1;
         }
         return visitor;

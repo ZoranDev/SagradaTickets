@@ -33,8 +33,6 @@ const Step1Item = ({ id }) => {
   const {
     userTicketData: { date, time, visitors },
     step1ActiveMidStep,
-    selectDate,
-    selectTime,
     showNextStep,
     sumOfVisitors,
   } = useContext(TicketContext);
@@ -155,11 +153,9 @@ const Step1Item = ({ id }) => {
 
       <div className={`w-[100%] flex items-center justify-center`}>
         {id === "calendar" && step1ActiveMidStep === "calendar" && (
-          <CalendarsContainer selectDate={selectDate} />
+          <CalendarsContainer />
         )}
-        {id === "time" && step1ActiveMidStep === "time" && (
-          <SelectHours selectHours={selectTime} />
-        )}
+        {id === "time" && step1ActiveMidStep === "time" && <SelectHours />}
         {id === "visitors" && step1ActiveMidStep === "visitors" && (
           <SelectVisitors />
         )}

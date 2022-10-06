@@ -2,6 +2,7 @@
 import { useState, useEffect, useContext } from "react";
 // Context
 import TicketContext from "../../../context/TicketContext";
+import SagradaContext from "../../../context/SagradaContext";
 // Icons
 import { FaMinus, FaPlus } from "react-icons/fa";
 
@@ -43,9 +44,10 @@ const AddRemoveVisitor = ({ id }) => {
   const {
     addVisitor,
     removeVisitor,
-    userTicketData: { visitors },
+    userTicketData: { visitors, date, time },
     sumOfVisitors,
   } = useContext(TicketContext);
+  const { availableTimes } = useContext(SagradaContext);
 
   // State for title and price
   const [titleAndPrice, setTitleAndPrice] = useState({
@@ -116,8 +118,34 @@ const AddRemoveVisitor = ({ id }) => {
 
   //plus function
   const plus = () => {
-    !disabled && addVisitor(id);
+    !disabled && addVisitor(id, maxVisitors);
   };
+
+  // state for max visitors
+  const [maxVisitors, setMaxVisitors] = useState(null);
+
+  // get max tickets available
+  const getMaxAvailableTickets = () => {
+    let max;
+    availableTimes &&
+      availableTimes.forEach((item) => {
+        if (
+          new Date(item.year, item.month, item.day).getTime() ===
+          new Date(date).getTime()
+        ) {
+          item.time.forEach((u) => {
+            if (u.time === time) {
+              max = u.availableVisitors;
+            }
+          });
+        }
+      });
+    return max;
+  };
+
+  useEffect(() => {
+    setMaxVisitors(getMaxAvailableTickets());
+  }, []);
 
   return (
     <div className="w-full my-3 flex items-center justify-between sm:w-[48%]">

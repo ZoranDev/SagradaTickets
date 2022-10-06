@@ -1,4 +1,10 @@
+// react
+import { useContext } from "react";
+// context
+import calendarContext from "../context/CalendarContext";
+// components
 import DayBtn from "./DayBtn";
+// icons
 import { FaAngleLeft, FaAngleRight } from "react-icons/fa";
 
 // Months
@@ -17,13 +23,10 @@ const months = [
   "December",
 ];
 
-const Calendar = ({
-  year,
-  month,
-  selectDate,
-  moveCalendarRight,
-  moveCalendarLeft,
-}) => {
+const Calendar = ({ year, month }) => {
+  // context
+  const { moveCalendarLeft, moveCalendarRight } = useContext(calendarContext);
+
   // get number of days for specific month and year
   const daysInMonth = (year, month) => {
     return new Date(year, month + 1, 0).getDate();
@@ -84,7 +87,6 @@ const Calendar = ({
                           date={date - 1}
                           year={year}
                           month={month}
-                          selectDate={selectDate}
                         />
                       );
                     }
@@ -103,7 +105,6 @@ const Calendar = ({
                           date={date - 1}
                           year={year}
                           month={month}
-                          selectDate={selectDate}
                         />
                       );
                     } else {

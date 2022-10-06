@@ -2,6 +2,7 @@
 import { useContext, useState, useEffect } from "react";
 // context
 import TicketContext from "../../context/TicketContext";
+import SagradaContext from "../../context/SagradaContext";
 // icons
 import { FaAngleRight, FaLock } from "react-icons/fa";
 
@@ -37,6 +38,8 @@ const CalculatePrice = ({ changeActiveStep, activeStep }) => {
     },
     sumOfVisitors,
   } = useContext(TicketContext);
+
+  const { updateAvailableTimes } = useContext(SagradaContext);
 
   // State for move on to the next step
   const [canMoveOn, setCanMoveOn] = useState(false);
@@ -104,7 +107,10 @@ const CalculatePrice = ({ changeActiveStep, activeStep }) => {
 
   // moveToNextStep
   const moveToNextStep = () => {
-    canMoveOn && activeStep <= 3 && changeActiveStep(activeStep + 1);
+    if (canMoveOn && activeStep <= 3) {
+      changeActiveStep(activeStep + 1);
+      activeStep === 3 && updateAvailableTimes(userTicketData);
+    }
   };
 
   return (

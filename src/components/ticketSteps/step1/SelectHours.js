@@ -1,13 +1,39 @@
 // react
-import { useContext } from "react";
+import { useContext, useState, useEffect } from "react";
 // context
 import TicketContext from "../../../context/TicketContext";
+import SagradaContext from "../../../context/SagradaContext";
+// components
+import Hour from "./Hour";
 
-const SelectHours = ({ selectHours }) => {
+const SelectHours = () => {
   //Context
   const {
-    userTicketData: { time },
+    userTicketData: { date, time },
   } = useContext(TicketContext);
+  const { availableTimes } = useContext(SagradaContext);
+
+  // state for hours
+  const [hours, setHours] = useState(null);
+
+  useEffect(() => {
+    getHours();
+  }, []);
+
+  // get hours if have
+  const getHours = () => {
+    // get data for selected day if that day is alredy in base - othervwise just continue because in that case we have all tickets available
+    availableTimes &&
+      availableTimes.forEach((item) => {
+        if (
+          new Date(item.year, item.month, item.day).getTime() ===
+          new Date(date).getTime()
+        ) {
+          setHours(item.time);
+        }
+      });
+  };
+
   return (
     <div className="w-full flex items-center justify-center flex-wrap">
       {[
@@ -22,18 +48,7 @@ const SelectHours = ({ selectHours }) => {
         "17:00",
         "18:00",
       ].map((hour, index) => (
-        <div
-          className={`w-[100px] m-2 p-2 border-[3px] ${
-            time === hour
-              ? "border-red-500 text-red-500 font-bold"
-              : "border-black"
-          } hover:border-red-500 hover:cursor-pointer hover:text-red-500 flex items-center justify-center`}
-          key={index}
-          id={hour}
-          onClick={selectHours}
-        >
-          {hour}
-        </div>
+        <Hour key={index} hour={hour} time={time} /* hours={hours} */ />
       ))}
     </div>
   );
