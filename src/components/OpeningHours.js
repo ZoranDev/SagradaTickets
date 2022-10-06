@@ -1,28 +1,43 @@
-const gridInfo = [
+const oppeningInfo = [
   {
-    col1: "Basic Sagrada Familia",
-    col2: "9h30",
-    col3: "MO-TUE-THU-FRI-SAT",
+    col1: "09:00 h",
+    col2: "MO-TUE-THU-FRI-SAT",
   },
   {
-    col1: "Basic La Pedrera",
-    col2: "11h15",
-    col3: "MO-TUE-THU-FRI-SAT",
+    col1: "10:00 h",
+    col2: "MO-TUE-THU-FRI-SAT",
   },
   {
-    col1: "Gaudí Tour (SAFA+La Pedrera)",
-    col2: "9h30",
-    col3: "MO-TUE-THU-FRI-SAT",
+    col1: "11:00 h",
+    col2: "MO-TUE-THU-FRI-SAT",
   },
   {
-    col1: "Montserrat",
-    col2: "14h",
-    col3: "MO-TUE-THU-FRI-SAT",
+    col1: "12:00 h",
+    col2: "MO-TUE-THU-FRI-SAT",
   },
   {
-    col1: "Sagrada Familia + La Pedrera + Montserrat",
-    col2: "9h30",
-    col3: "MO-TUE-THU-FRI-SAT",
+    col1: "13:00 h",
+    col2: "MO-TUE-THU-FRI-SAT",
+  },
+  {
+    col1: "14:00 h",
+    col2: "MO-TUE-THU-FRI-SAT",
+  },
+  {
+    col1: "15:00 h",
+    col2: "MO-TUE-THU-FRI-SAT",
+  },
+  {
+    col1: "16:00 h",
+    col2: "MO-TUE-THU-FRI-SAT",
+  },
+  {
+    col1: "17:00 h",
+    col2: "MO-TUE-THU-FRI-SAT",
+  },
+  {
+    col1: "18:00 h",
+    col2: "MO-TUE-THU-FRI-SAT",
   },
 ];
 
@@ -36,21 +51,18 @@ const OpeningHours = () => {
       </p>
       {/* Tour hours */}
       <div className="w-full mb-10 ">
-        <h1 className="w-full mb-4 text-center text-4xl">Tour hours</h1>
-        <div className="grid grid-cols-1 grid-rows-5 gap-0 text-neutral-700">
-          {gridInfo.map((item, index) => (
+        <h1 className="w-full mb-4 text-center text-4xl">Opening hours</h1>
+        <div className="grid grid-cols-1 grid-rows-10 gap-0 text-neutral-700">
+          {oppeningInfo.map((item, index) => (
             <div
               key={index}
-              className="w-full grid grid-cols-3 grid-rows-1 text-md lg:text-xl"
+              className="w-full grid grid-cols-2 grid-rows-1 text-md lg:text-xl"
             >
-              <div className="px-1 py-1 border-[1px] flex items-center justify-left overflow-hidden sm:px-2">
+              <div className=" py-1 border-[1px] flex items-center justify-center text-center sm:px-2">
                 {item.col1}
               </div>
               <div className=" py-1 border-[1px] flex items-center justify-center text-center sm:px-2">
                 {item.col2}
-              </div>
-              <div className=" py-1 border-[1px] flex items-center justify-center text-center sm:px-2">
-                {item.col3}
               </div>
             </div>
           ))}
