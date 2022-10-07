@@ -20,6 +20,11 @@ const Tickets = () => {
     setActiveStep(stepID);
   };
 
+  //buyMoreTicketsFunc
+  const buyMoreTicketsFunc = () => {
+    setActiveStep(1);
+  };
+
   return (
     <div className="w-full mx-auto  py-5 bg-transparent lg:px-[100px] sm:px-3">
       {/* Display active step section */}
@@ -77,7 +82,9 @@ const Tickets = () => {
         {activeStep === 1 && <TicketsStep1 />}
         {activeStep === 2 && <TicketsStep2 />}
         {activeStep === 3 && <TicketsStep3 />}
-        {activeStep === 4 && <TicketsStep4 />}
+        {activeStep === 4 && (
+          <TicketsStep4 buyMoreTicketsFunc={buyMoreTicketsFunc} />
+        )}
         {activeStep !== 4 && (
           <CalculatePrice
             changeActiveStep={changeActiveStep}
