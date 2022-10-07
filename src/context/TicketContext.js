@@ -42,11 +42,19 @@ export const TicketProvider = ({ children }) => {
     },
   });
 
-  // State for active mid step in step 1
+  // Active step - 1 (date,time,visitors), 2 (personal info), 3 (pay) - 4 (confirmation)
+  const [activeStep, setActiveStep] = useState(1);
+
+  // State for active mid step in step  - show calendar, hours or visitors selection
   const [step1ActiveMidStep, setStep1ActiveMidStep] = useState("calendar");
 
   // State for sum of visitors
   const [sumOfVisitors, setSumOfVisitors] = useState(0);
+
+  // changeActiveStep
+  const changeActiveStep = (stepID) => {
+    setActiveStep(stepID);
+  };
 
   //get sumOfVisitors
   const getSumOfVisitors = () => {
@@ -57,8 +65,8 @@ export const TicketProvider = ({ children }) => {
     setSumOfVisitors(sum);
   };
 
-  //showNextStep - mozda ovo moze jednostavnije preko niza nekog
-  const showNextStep = (step) => {
+  //showNextMidStep - move from calendar to hours and visitors selection
+  const showNextMidStep = (step) => {
     setStep1ActiveMidStep(step);
   };
 
@@ -85,7 +93,6 @@ export const TicketProvider = ({ children }) => {
         return visitor;
       }),
     });
-    // OVO MOZDA POGLEDATI MALO JER DA NEMA OVOGA KAD KLIKNEM NA PLUS NE BI MI U STEP1 LOGOVALO DA IMA VISITORA
     getSumOfVisitors();
   };
 
@@ -167,8 +174,61 @@ export const TicketProvider = ({ children }) => {
     });
   };
 
-  //resetState,
-  const resetState = () => {
+  // check is step 1 fulfiled - true (have selected date and time, and sum of visitors > 0 but children only could not get ticket
+  const isStepOneFulfiled = () => {
+    // Get childrens and adults
+    let childrens = parseInt(userTicketData.visitors[1].value);
+    let adults = parseInt(sumOfVisitors - childrens);
+
+    // 2 child per 1 adult or only one child
+    let fulfiled =
+      !userTicketData.date ||
+      !userTicketData.time ||
+      sumOfVisitors === childrens ||
+      childrens - adults > childrens / 2
+        ? false
+        : true;
+
+    return fulfiled;
+  };
+
+  // check is step 2 fulfiled - true (have all info with no errors()
+  const isStepTwoFulfiled = () => {
+    let fulfiled =
+      userTicketData.personalInfo.name !== "" &&
+      userTicketData.personalInfo.lastName !== "" &&
+      userTicketData.personalInfo.phone !== "" &&
+      userTicketData.personalInfo.email1 !== "" &&
+      userTicketData.personalInfo.email2 !== "" &&
+      userTicketData.personalInfo.country !== "" &&
+      !userTicketData.personalInfo.isErrInForm &&
+      userTicketData.termsAndConditions.general &&
+      userTicketData.termsAndConditions.privacy
+        ? true
+        : false;
+    return fulfiled;
+  };
+
+  // check is step 3 fulfiled - true (have all info with no errors()
+  const isStepThreeFulfiled = () => {
+    let fulfiled =
+      userTicketData.creditCardInfo.num1 !== "" &&
+      userTicketData.creditCardInfo.num2 !== "" &&
+      userTicketData.creditCardInfo.num3 !== "" &&
+      userTicketData.creditCardInfo.num4 !== "" &&
+      userTicketData.creditCardInfo.cvc !== "" &&
+      userTicketData.creditCardInfo.expireMonth !== "" &&
+      userTicketData.creditCardInfo.expireYear !== "" &&
+      !userTicketData.creditCardInfo.isErrInCardInfo
+        ? true
+        : false;
+    return fulfiled;
+  };
+
+  //buyMoreTicketsFunc,
+  const buyMoreTicketsFunc = () => {
+    // Set active step to 1, reset state, set active mid step to calendar and set num of visitors to 0
+    setActiveStep(1);
     setUserTicketData({
       date: null,
       time: null,
@@ -213,20 +273,25 @@ export const TicketProvider = ({ children }) => {
     <TicketContext.Provider
       value={{
         userTicketData,
+        activeStep,
         step1ActiveMidStep,
         sumOfVisitors,
         selectDate,
         selectTime,
         addVisitor,
         removeVisitor,
-        showNextStep,
+        showNextMidStep,
+        changeActiveStep,
         calculatePrice,
         fillPersonalInfo,
         isErrorInPersonalInfo,
         fillTermAndCondition,
         fillCardInfo,
         isErrorInCreditCardInfo,
-        resetState,
+        buyMoreTicketsFunc,
+        isStepOneFulfiled,
+        isStepTwoFulfiled,
+        isStepThreeFulfiled,
       }}
     >
       {children}

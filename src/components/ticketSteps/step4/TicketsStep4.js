@@ -5,19 +5,13 @@ import TicketContext from "../../../context/TicketContext";
 //icons
 import { FaCheck } from "react-icons/fa";
 
-const TicketsStep4 = ({ buyMoreTicketsFunc }) => {
+const TicketsStep4 = () => {
   // context
   const {
     userTicketData: { date, time, visitors },
     calculatePrice,
-    resetState,
+    buyMoreTicketsFunc,
   } = useContext(TicketContext);
-
-  //onClick
-  const onClick = () => {
-    buyMoreTicketsFunc();
-    resetState();
-  };
 
   return (
     <div className="w-full mt-10 flex flex-col items-center ">
@@ -110,7 +104,7 @@ const TicketsStep4 = ({ buyMoreTicketsFunc }) => {
       </div>
 
       <button
-        onClick={onClick}
+        onClick={buyMoreTicketsFunc}
         className="my-5 px-20 py-5 bg-red-600 text-white text-xl rounded-3xl cursor-pointer shadow-[0_0_0_0_rgba(219,92,92)] hover:shadow-[0_0_0_20px_transparent] hover:transition-shadow hover:duration-[600ms]  active:scale-[0.98]"
       >
         Buy more tickets

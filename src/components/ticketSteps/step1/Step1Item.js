@@ -33,7 +33,7 @@ const Step1Item = ({ id }) => {
   const {
     userTicketData: { date, time, visitors },
     step1ActiveMidStep,
-    showNextStep,
+    showNextMidStep,
     sumOfVisitors,
   } = useContext(TicketContext);
   // State for active
@@ -85,7 +85,7 @@ const Step1Item = ({ id }) => {
 
   //editStepInfo - when user click on
   const editStepInfo = () => {
-    showNextStep(id);
+    showNextMidStep(id);
   };
 
   return (

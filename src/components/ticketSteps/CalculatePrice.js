@@ -6,37 +6,16 @@ import SagradaContext from "../../context/SagradaContext";
 // icons
 import { FaAngleRight, FaLock } from "react-icons/fa";
 
-const CalculatePrice = ({ changeActiveStep, activeStep }) => {
+const CalculatePrice = () => {
   // context
   const {
     userTicketData,
     calculatePrice,
-    userTicketData: {
-      date,
-      time,
-      visitors,
-      personalInfo: {
-        name,
-        lastName,
-        phone,
-        email1,
-        email2,
-        country,
-        isErrInForm,
-      },
-      termsAndConditions: { general, privacy, information },
-      creditCardInfo: {
-        num1,
-        num2,
-        num3,
-        num4,
-        expireMonth,
-        expireYear,
-        cvc,
-        isErrInCardInfo,
-      },
-    },
-    sumOfVisitors,
+    isStepOneFulfiled,
+    isStepTwoFulfiled,
+    isStepThreeFulfiled,
+    activeStep,
+    changeActiveStep,
   } = useContext(TicketContext);
 
   const { updateAvailableTimes } = useContext(SagradaContext);
@@ -51,59 +30,6 @@ const CalculatePrice = ({ changeActiveStep, activeStep }) => {
       ? setCanMoveOn(true)
       : setCanMoveOn(false);
   }, [userTicketData]);
-
-  // MOZDA OVE PREBACITI U CONTEXT MOZDA JE LAKSE TAKO
-
-  // check is step 1 fulfiled - true (have selected date and time, and sum of visitors > 0 but children only could not get ticket
-  const isStepOneFulfiled = () => {
-    // Get childrens and adults
-    let childrens = parseInt(visitors[1].value);
-    let adults = parseInt(sumOfVisitors - childrens);
-
-    // 2 child per 1 adult or only one child
-    let fulfiled =
-      !date ||
-      !time ||
-      sumOfVisitors === childrens ||
-      childrens - adults > childrens / 2
-        ? false
-        : true;
-
-    return fulfiled;
-  };
-
-  // check is step 2 fulfiled - true (have all info with no errors()
-  const isStepTwoFulfiled = () => {
-    let fulfiled =
-      name !== "" &&
-      lastName !== "" &&
-      phone !== "" &&
-      email1 !== "" &&
-      email2 !== "" &&
-      country !== "" &&
-      !isErrInForm &&
-      general &&
-      privacy
-        ? true
-        : false;
-    return fulfiled;
-  };
-
-  // check is step 3 fulfiled - true (have all info with no errors()
-  const isStepThreeFulfiled = () => {
-    let fulfiled =
-      num1 !== "" &&
-      num2 !== "" &&
-      num3 !== "" &&
-      num4 !== "" &&
-      cvc !== "" &&
-      expireMonth !== "" &&
-      expireYear !== "" &&
-      !isErrInCardInfo
-        ? true
-        : false;
-    return fulfiled;
-  };
 
   // moveToNextStep
   const moveToNextStep = () => {

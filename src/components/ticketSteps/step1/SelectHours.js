@@ -3,7 +3,7 @@ import Hour from "./Hour";
 
 const SelectHours = () => {
   return (
-    <div className="w-full flex items-center justify-center flex-wrap">
+    <div className="mb-3 w-full flex items-center justify-center flex-wrap">
       {[
         "09:00",
         "10:00",
