@@ -7,9 +7,9 @@ import { FaInstagram, FaFacebook } from "react-icons/fa";
 const Footer = () => {
   return (
     <div className="w-full">
-      <div className="w-full py-5 px-10 bg-red-600 flex items-start justify-between text-white">
+      <div className="w-full py-5 px-10 bg-red-600 flex flex-col items-start justify-between text-white sm:flex-row">
         {/* Tickets */}
-        <div className="mr-10">
+        <div className="mb-5">
           <h1 className="text-xl mb-3">Sagrada familia tickets</h1>
           <Link
             to="/tickets"
@@ -17,22 +17,20 @@ const Footer = () => {
           />
         </div>
         {/* Social */}
-        <div className="mr-10">
-          <h1 className="text-xl mb-3">Social</h1>
-          <div className="flex items-center justify-center">
-            <a
-              href="https://www.facebook.com/BasilicadelaSagradaFamilia/"
-              target={"_blank"}
-            >
-              <FaFacebook className="w-[20px] h-[20px] mr-2 cursor-pointer hover:scale-[1.2] transition-transform duration-400" />
-            </a>
-            <a
-              href="https://www.instagram.com/basilicasagradafamilia/?hl=en"
-              target={"_blank"}
-            >
-              <FaInstagram className="w-[20px] h-[20px] cursor-pointer hover:scale-[1.2] transition-transform duration-400" />
-            </a>
-          </div>
+        <div className="mr-10  flex items-center justify-center relative">
+          <h1 className="mr-2 text-xl">Follow us on social</h1>
+          <a
+            href="https://www.facebook.com/BasilicadelaSagradaFamilia/"
+            target={"_blank"}
+          >
+            <FaFacebook className="text-xl mr-2 cursor-pointer hover:scale-[1.2] hover:-translate-y-[5px] transition-transform duration-400" />
+          </a>
+          <a
+            href="https://www.instagram.com/basilicasagradafamilia/?hl=en"
+            target={"_blank"}
+          >
+            <FaInstagram className="text-xl cursor-pointer hover:scale-[1.2] hover:-translate-y-[5px] transition-transform duration-400" />
+          </a>
         </div>
       </div>
       <p className="w-full px-10 py-5 text-center ">
