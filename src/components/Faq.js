@@ -1,3 +1,4 @@
+// components
 import Question from "./Question";
 
 const qa = [

@@ -32,7 +32,7 @@ const Question = ({ question, answer }) => {
       <div
         className={
           open
-            ? "max-h-[1200px] duration-300 ease-in lg:max-h-[200px]}"
+            ? "max-h-[1200px] duration-300 ease-in lg:max-h-[200px]"
             : "max-h-[0px]  duration-300 ease-out"
         }
       >
