@@ -9,9 +9,9 @@ module.exports = {
     },
     keyframes: {
       covid: {
-        "0%": { left: "-1300px" },
+        "0%": { left: "-1400px" },
         "20%,80%": { left: "0px" },
-        "100%": { left: "1300px" },
+        "100%": { left: "1400px" },
       },
     },
   },
