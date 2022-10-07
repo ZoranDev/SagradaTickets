@@ -67,6 +67,13 @@ const AddRemoveVisitor = ({ id }) => {
   // State for disabled - set this to true if sum of all visitors is 9 (max 9 visitors per one ticket)
   const [disabled, setDisabled] = useState(false);
 
+  // state for max visitors
+  const [maxVisitors, setMaxVisitors] = useState(null);
+
+  useEffect(() => {
+    setMaxVisitors(getMaxAvailableTickets());
+  }, []);
+
   useEffect(() => {
     getTitleAndPrice();
     getValue();
@@ -75,6 +82,25 @@ const AddRemoveVisitor = ({ id }) => {
   useEffect(() => {
     getCursors();
   }, [value]);
+
+  // get max tickets available
+  const getMaxAvailableTickets = () => {
+    let max = 50;
+    availableTimes &&
+      availableTimes.forEach((item) => {
+        if (
+          new Date(item.year, item.month, item.day).getTime() ===
+          new Date(date).getTime()
+        ) {
+          item.time.forEach((u) => {
+            if (u.time === time) {
+              max = u.availableVisitors;
+            }
+          });
+        }
+      });
+    return max;
+  };
 
   //get value
   const getValue = () => {
@@ -120,32 +146,6 @@ const AddRemoveVisitor = ({ id }) => {
   const plus = () => {
     !disabled && addVisitor(id, maxVisitors);
   };
-
-  // state for max visitors
-  const [maxVisitors, setMaxVisitors] = useState(null);
-
-  // get max tickets available
-  const getMaxAvailableTickets = () => {
-    let max;
-    availableTimes &&
-      availableTimes.forEach((item) => {
-        if (
-          new Date(item.year, item.month, item.day).getTime() ===
-          new Date(date).getTime()
-        ) {
-          item.time.forEach((u) => {
-            if (u.time === time) {
-              max = u.availableVisitors;
-            }
-          });
-        }
-      });
-    return max;
-  };
-
-  useEffect(() => {
-    setMaxVisitors(getMaxAvailableTickets());
-  }, []);
 
   return (
     <div className="w-full my-3 flex items-center justify-between sm:w-[48%]">

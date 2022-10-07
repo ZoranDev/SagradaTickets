@@ -4,11 +4,11 @@ import { useContext, useState, useEffect } from "react";
 import TicketContext from "../../../context/TicketContext";
 import SagradaContext from "../../../context/SagradaContext";
 
-const Hour = ({ time, hour, hours, index }) => {
+const Hour = ({ hour }) => {
   // context
   const {
     selectTime,
-    userTicketData: { date },
+    userTicketData: { date, time },
   } = useContext(TicketContext);
   const { availableTimes } = useContext(SagradaContext);
 
@@ -55,7 +55,7 @@ const Hour = ({ time, hour, hours, index }) => {
       {hour}
       <p
         className={`text-[12px] ${
-          ticketsLeft >= 41 ? "text-green-500" : "text-red-500"
+          ticketsLeft >= 10 ? "text-green-500" : "text-red-500"
         } `}
       >
         {ticketsLeft} tickets left
